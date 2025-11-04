@@ -86,64 +86,80 @@ const ImpactSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="py-20 bg-background relative overflow-hidden">
-      {/* Background Pattern */}
+    <section ref={sectionRef} className="py-24 bg-gradient-to-b from-background via-muted/30 to-background relative overflow-hidden">
+      {/* Animated background */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle, hsl(var(--secondary)) 1px, transparent 1px)',
-          backgroundSize: '30px 30px',
+        <div className="absolute inset-0 animate-gradient-shift" style={{
+          backgroundImage: 'radial-gradient(circle at 20% 50%, hsl(var(--secondary)) 2px, transparent 2px), radial-gradient(circle at 80% 50%, hsl(var(--accent)) 2px, transparent 2px)',
+          backgroundSize: '60px 60px',
+          backgroundPosition: '0 0, 30px 30px',
         }} />
       </div>
 
+      {/* Glowing orbs */}
+      <div className="absolute top-1/4 left-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-1/4 right-10 w-96 h-96 bg-accent/10 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30 backdrop-blur-sm">
+            <div className="w-2 h-2 rounded-full bg-secondary animate-glow-pulse" />
             Our Impact
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 bg-gradient-to-r from-foreground via-secondary to-foreground bg-clip-text">
             Driving Change Through Innovation
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Measurable results that demonstrate our commitment to excellence and client success
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className="group relative p-8 rounded-2xl bg-card border border-border hover:border-secondary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/10 animate-fade-in-up hover:-translate-y-2 overflow-hidden"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className={`group relative p-10 rounded-3xl bg-card/80 backdrop-blur-sm border border-border hover:border-secondary/50 transition-all duration-1000 hover:shadow-2xl hover:shadow-secondary/20 overflow-hidden ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
-              {/* Animated gradient orb */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-[2] transition-transform duration-700 animate-glow-pulse" />
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
-              {/* Shimmer effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/10 to-transparent"
-                  style={{
-                    backgroundSize: '200% 100%',
-                    animation: 'shimmer 3s linear infinite'
-                  }}
-                />
+              {/* Rotating gradient orb */}
+              <div className="absolute -top-20 -right-20 w-48 h-48 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-full blur-3xl group-hover:scale-150 group-hover:rotate-180 transition-all duration-1000" />
+              
+              {/* Shimmer effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </div>
               
-              {/* Border glow effect */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
-                <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 via-accent/50 to-secondary/50 blur-sm animate-gradient-shift" style={{ backgroundSize: '200% 200%' }} />
-              </div>
+              {/* Top accent */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
               
-              <div className="relative z-10">
-                <metric.icon className={`w-12 h-12 mb-4 ${metric.color} group-hover:scale-110 transition-transform duration-500 animate-float`} style={{ animationDelay: `${index * 300}ms` }} />
+              <div className="relative z-10 flex flex-col items-center text-center">
+                {/* Icon container with glow */}
+                <div className="relative mb-6">
+                  <div className={`absolute inset-0 ${metric.color} opacity-20 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700`} />
+                  <div className="relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted group-hover:scale-110 transition-transform duration-500">
+                    <metric.icon className={`w-12 h-12 ${metric.color}`} />
+                  </div>
+                </div>
                 
-                <div className="text-4xl font-bold text-foreground mb-2 animate-counter group-hover:text-secondary transition-colors duration-300">
+                {/* Counter */}
+                <div className={`text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-foreground to-secondary bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500 ${
+                  isVisible ? 'animate-counter' : ''
+                }`}>
                   <Counter value={metric.value} suffix={metric.suffix} />
                 </div>
                 
-                <div className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
+                {/* Label */}
+                <div className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors duration-500 uppercase tracking-wide">
                   {metric.label}
                 </div>
+
+                {/* Decorative line */}
+                <div className="mt-4 w-12 h-0.5 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 group-hover:w-20 transition-all duration-700" />
               </div>
             </div>
           ))}

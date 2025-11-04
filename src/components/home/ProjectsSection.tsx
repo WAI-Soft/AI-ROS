@@ -1,8 +1,33 @@
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { useEffect, useRef, useState } from 'react';
+import { ExternalLink, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 const ProjectsSection = () => {
+  const [visibleCards, setVisibleCards] = useState<boolean[]>([false, false, false]);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const observers = cardRefs.current.map((card, index) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setVisibleCards(prev => {
+              const newState = [...prev];
+              newState[index] = true;
+              return newState;
+            });
+          }
+        },
+        { threshold: 0.2 }
+      );
+
+      if (card) observer.observe(card);
+      return observer;
+    });
+
+    return () => observers.forEach(observer => observer.disconnect());
+  }, []);
   const projects = [
     {
       title: 'Smart Irrigation System',
@@ -31,110 +56,144 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="inline-block px-4 py-2 mb-4 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30">
+    <section id="projects" className="py-24 bg-gradient-to-b from-muted via-background to-background relative overflow-hidden">
+      {/* Animated grid background */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(to right, hsl(var(--secondary)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--secondary)) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
+        }} />
+      </div>
+
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <Sparkles className="absolute top-32 right-1/4 w-6 h-6 text-secondary animate-float opacity-20" style={{ animationDelay: '0s' }} />
+        <Sparkles className="absolute bottom-40 left-1/3 w-4 h-4 text-accent animate-float opacity-20" style={{ animationDelay: '1.5s' }} />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="text-center mb-20">
+          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30 backdrop-blur-sm">
+            <Sparkles className="w-4 h-4 animate-glow-pulse" />
             Featured Projects
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          </div>
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 bg-gradient-to-r from-foreground via-secondary to-foreground bg-clip-text">
             Success Stories
           </h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Real-world implementations delivering measurable impact across industries
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10">
           {projects.map((project, index) => (
-            <Card
+            <div
               key={project.title}
-              className="group relative overflow-hidden border-border hover:shadow-2xl hover:shadow-secondary/20 transition-all duration-500 animate-fade-in-up hover:-translate-y-3"
-              style={{ animationDelay: `${index * 150}ms` }}
+              ref={el => cardRefs.current[index] = el}
+              className={`transition-all duration-1000 ${
+                visibleCards[index] 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-20'
+              }`}
+              style={{ transitionDelay: `${index * 200}ms` }}
             >
-              {/* Glow effect on hover */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-br from-secondary/20 via-transparent to-accent/20 animate-gradient-shift" style={{ backgroundSize: '200% 200%' }} />
-              </div>
-
-              <div className="relative h-56 overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/90 to-transparent" />
-                
-                {/* Animated overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-secondary/30 to-accent/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 animate-shimmer" style={{ backgroundSize: '200% 100%' }} />
-                
-                <div className="absolute bottom-4 left-4 right-4 transform group-hover:translate-y-[-4px] transition-transform duration-300">
-                  <span className="inline-block px-3 py-1 text-xs font-semibold text-white bg-secondary/90 rounded-full animate-glow-pulse shadow-lg">
-                    {project.category}
-                  </span>
-                </div>
-              </div>
-
-              <CardContent className="p-6 relative">
-                <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors duration-300">
-                  {project.title}
-                </h3>
-
-                <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-                  {project.description}
-                </p>
-
-                <div className="grid grid-cols-3 gap-2 mb-4 pb-4 border-b border-border group-hover:border-secondary/30 transition-colors duration-300">
-                  {project.stats.map((stat, idx) => (
-                    <div 
-                      key={stat} 
-                      className="text-center transform group-hover:scale-105 transition-transform duration-300"
-                      style={{ transitionDelay: `${idx * 50}ms` }}
-                    >
-                      <div className="text-xs font-semibold text-secondary whitespace-nowrap animate-glow-pulse">
-                        {stat.split(' ')[0]}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {stat.split(' ').slice(1).join(' ')}
-                      </div>
-                    </div>
-                  ))}
+              <Card className="group relative overflow-hidden border-border hover:border-secondary/50 transition-all duration-700 hover:shadow-2xl hover:shadow-secondary/20 bg-card h-full flex flex-col">
+                {/* Ambient glow effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 animate-gradient-shift" style={{ backgroundSize: '200% 200%' }} />
                 </div>
 
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map((tag, idx) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 text-xs font-medium text-muted-foreground bg-muted rounded group-hover:bg-secondary/10 group-hover:text-secondary transition-all duration-300 transform group-hover:scale-105"
-                      style={{ transitionDelay: `${idx * 50}ms` }}
-                    >
-                      {tag}
+                <div className="relative h-64 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                  
+                  {/* Animated overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-secondary/20 via-transparent to-accent/20 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                  
+                  {/* Category badge */}
+                  <div className="absolute top-4 left-4 transform group-hover:scale-110 transition-transform duration-500">
+                    <span className="inline-flex items-center gap-2 px-4 py-2 text-xs font-bold text-white bg-gradient-to-r from-secondary to-accent rounded-full shadow-xl backdrop-blur-sm">
+                      <div className="w-2 h-2 rounded-full bg-white animate-glow-pulse" />
+                      {project.category}
                     </span>
-                  ))}
+                  </div>
+
+                  {/* Gradient overlay line */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary via-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 </div>
 
-                <Button
-                  variant="ghost"
-                  className="group/btn relative text-secondary hover:text-secondary p-0 h-auto font-semibold w-full justify-center overflow-hidden"
-                >
-                  <span className="relative z-10 flex items-center">
-                    View Project
-                    <ExternalLink className="ml-2 w-4 h-4 group-hover/btn:translate-x-2 group-hover/btn:rotate-12 transition-all duration-300" />
-                  </span>
-                  <div className="absolute inset-0 bg-secondary/10 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300" />
-                </Button>
-              </CardContent>
-            </Card>
+                <CardContent className="p-8 relative flex flex-col flex-grow">
+                  <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-secondary transition-colors duration-500">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-border group-hover:border-secondary/30 transition-colors duration-500">
+                    {project.stats.map((stat, idx) => (
+                      <div 
+                        key={stat} 
+                        className={`text-center p-3 rounded-xl bg-muted/50 backdrop-blur-sm transform transition-all duration-500 group-hover:bg-secondary/10 ${
+                          visibleCards[index] ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
+                        }`}
+                        style={{ transitionDelay: `${(index * 200) + (idx * 100)}ms` }}
+                      >
+                        <div className="text-lg font-bold text-secondary mb-1">
+                          {stat.split(' ')[0]}
+                        </div>
+                        <div className="text-xs text-muted-foreground font-medium">
+                          {stat.split(' ').slice(1).join(' ')}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag, idx) => (
+                      <span
+                        key={tag}
+                        className={`px-3 py-1.5 text-xs font-semibold text-muted-foreground bg-muted rounded-full group-hover:bg-gradient-to-r group-hover:from-secondary/20 group-hover:to-accent/20 group-hover:text-secondary transition-all duration-500 ${
+                          visibleCards[index] ? 'translate-y-0 opacity-100' : 'translate-y-2 opacity-0'
+                        }`}
+                        style={{ transitionDelay: `${(index * 200) + (idx * 100)}ms` }}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Button
+                    variant="ghost"
+                    className="group/btn relative text-secondary hover:text-secondary p-0 h-auto font-semibold w-full justify-center mt-auto"
+                  >
+                    <span className="relative z-10 flex items-center">
+                      View Project Details
+                      <ExternalLink className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-300" />
+                    </span>
+                    <div className="absolute inset-0 -inset-x-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-lg opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Button
             size="lg"
-            className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white font-semibold px-8"
+            className="group relative bg-gradient-to-r from-secondary to-accent hover:shadow-2xl hover:shadow-secondary/50 text-white font-semibold px-10 py-6 text-lg rounded-full overflow-hidden transition-all duration-500 hover:scale-105"
           >
-            View All Projects
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <span className="relative z-10 flex items-center">
+              View All Projects
+              <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-2 transition-transform duration-300" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-accent to-secondary opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </Button>
         </div>
       </div>
