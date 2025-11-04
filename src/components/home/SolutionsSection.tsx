@@ -49,15 +49,25 @@ const SolutionsSection = () => {
           {solutions.map((solution, index) => (
             <Card
               key={solution.title}
-              className="group hover:shadow-xl transition-all duration-300 border-border animate-fade-in-up hover:-translate-y-2"
+              className="group relative overflow-hidden hover:shadow-2xl hover:shadow-secondary/20 transition-all duration-500 border-border animate-fade-in-up hover:-translate-y-3"
               style={{ animationDelay: `${index * 150}ms` }}
             >
-              <CardContent className="p-8">
-                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${solution.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
-                  <solution.icon className="w-7 h-7 text-white" />
+              {/* Animated gradient background */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity duration-500">
+                <div className={`absolute inset-0 bg-gradient-to-br ${solution.color} animate-gradient-shift`} style={{ backgroundSize: '200% 200%' }} />
+              </div>
+              
+              {/* Border beam effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 overflow-hidden">
+                <div className={`absolute inset-0 bg-gradient-to-r ${solution.color} opacity-50 blur-xl`} style={{ width: '50%', height: '2px', top: 0, left: 0 }} />
+              </div>
+
+              <CardContent className="p-8 relative z-10">
+                <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${solution.color} flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg animate-float`} style={{ animationDelay: `${index * 200}ms` }}>
+                  <solution.icon className="w-7 h-7 text-white animate-glow-pulse" />
                 </div>
 
-                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors">
+                <h3 className="text-2xl font-bold text-foreground mb-3 group-hover:text-secondary transition-colors duration-300">
                   {solution.title}
                 </h3>
 
@@ -66,9 +76,13 @@ const SolutionsSection = () => {
                 </p>
 
                 <div className="space-y-2 mb-6">
-                  {solution.features.map((feature) => (
-                    <div key={feature} className="flex items-center text-sm text-muted-foreground">
-                      <div className="w-1.5 h-1.5 rounded-full bg-secondary mr-3" />
+                  {solution.features.map((feature, idx) => (
+                    <div 
+                      key={feature} 
+                      className="flex items-center text-sm text-muted-foreground opacity-0 animate-fade-in"
+                      style={{ animationDelay: `${(index * 150) + (idx * 100)}ms`, animationFillMode: 'forwards' }}
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-secondary mr-3 animate-glow-pulse" style={{ animationDelay: `${idx * 200}ms` }} />
                       {feature}
                     </div>
                   ))}
@@ -76,10 +90,11 @@ const SolutionsSection = () => {
 
                 <Button
                   variant="ghost"
-                  className="group/btn text-secondary hover:text-secondary p-0 h-auto font-semibold"
+                  className="group/btn text-secondary hover:text-secondary p-0 h-auto font-semibold relative overflow-hidden"
                 >
-                  Learn More
-                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  <span className="relative z-10">Learn More</span>
+                  <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-2 transition-transform duration-300" />
+                  <div className="absolute inset-0 bg-secondary/10 translate-x-[-100%] group-hover/btn:translate-x-0 transition-transform duration-300" />
                 </Button>
               </CardContent>
             </Card>

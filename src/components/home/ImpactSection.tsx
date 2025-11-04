@@ -112,19 +112,36 @@ const ImpactSection = () => {
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className="group relative p-8 rounded-2xl bg-card border border-border hover:border-secondary/50 transition-all duration-300 hover:shadow-lg animate-fade-in-up"
+              className="group relative p-8 rounded-2xl bg-card border border-border hover:border-secondary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-secondary/10 animate-fade-in-up hover:-translate-y-2 overflow-hidden"
               style={{ animationDelay: `${index * 100}ms` }}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/5 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
+              {/* Animated gradient orb */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-secondary/10 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-[2] transition-transform duration-700 animate-glow-pulse" />
               
-              <div className="relative">
-                <metric.icon className={`w-12 h-12 mb-4 ${metric.color}`} />
+              {/* Shimmer effect on hover */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-secondary/10 to-transparent"
+                  style={{
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 3s linear infinite'
+                  }}
+                />
+              </div>
+              
+              {/* Border glow effect */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl">
+                <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 via-accent/50 to-secondary/50 blur-sm animate-gradient-shift" style={{ backgroundSize: '200% 200%' }} />
+              </div>
+              
+              <div className="relative z-10">
+                <metric.icon className={`w-12 h-12 mb-4 ${metric.color} group-hover:scale-110 transition-transform duration-500 animate-float`} style={{ animationDelay: `${index * 300}ms` }} />
                 
-                <div className="text-4xl font-bold text-foreground mb-2 animate-counter">
+                <div className="text-4xl font-bold text-foreground mb-2 animate-counter group-hover:text-secondary transition-colors duration-300">
                   <Counter value={metric.value} suffix={metric.suffix} />
                 </div>
                 
-                <div className="text-sm font-medium text-muted-foreground">
+                <div className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300">
                   {metric.label}
                 </div>
               </div>
