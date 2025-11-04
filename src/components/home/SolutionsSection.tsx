@@ -97,8 +97,10 @@ const SolutionsSection = () => {
               ref={el => cardRefs.current[index] = el}
               className={`transition-all duration-1000 ${
                 visibleCards[index] 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-20'
+                  ? 'opacity-100 translate-x-0 translate-y-0 rotate-0' 
+                  : index % 2 === 0 
+                    ? 'opacity-0 -translate-x-20 translate-y-10 -rotate-3'
+                    : 'opacity-0 translate-x-20 translate-y-10 rotate-3'
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >

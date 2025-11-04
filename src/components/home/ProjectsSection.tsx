@@ -92,12 +92,12 @@ const ProjectsSection = () => {
               ref={el => cardRefs.current[index] = el}
               className={`transition-all duration-1000 ${
                 visibleCards[index] 
-                  ? 'opacity-100 translate-y-0' 
-                  : 'opacity-0 translate-y-20'
+                  ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
+                  : 'opacity-0 translate-y-24 scale-95 rotate-2'
               }`}
               style={{ transitionDelay: `${index * 200}ms` }}
             >
-              <Card className="group relative overflow-hidden border-border hover:border-secondary/50 transition-all duration-700 hover:shadow-2xl hover:shadow-secondary/20 bg-card h-full flex flex-col">
+              <Card className="group relative overflow-hidden border-border hover:border-secondary/50 transition-all duration-700 hover:shadow-2xl hover:shadow-secondary/20 hover:-translate-y-3 hover:scale-105 bg-card h-full flex flex-col">
                 {/* Ambient glow effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
                   <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 via-transparent to-accent/10 animate-gradient-shift" style={{ backgroundSize: '200% 200%' }} />

@@ -118,8 +118,10 @@ const ImpactSection = () => {
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className={`group relative p-10 rounded-3xl bg-card/80 backdrop-blur-sm border border-border hover:border-secondary/50 transition-all duration-1000 hover:shadow-2xl hover:shadow-secondary/20 overflow-hidden ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              className={`group relative p-10 rounded-3xl bg-card/80 backdrop-blur-sm border border-border hover:border-secondary/50 transition-all duration-1000 hover:shadow-2xl hover:shadow-secondary/20 hover:-translate-y-2 hover:scale-105 overflow-hidden ${
+                isVisible 
+                  ? 'opacity-100 translate-y-0 scale-100' 
+                  : 'opacity-0 translate-y-16 scale-90'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
