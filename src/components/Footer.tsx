@@ -23,7 +23,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-[hsl(210,40%,8%)] text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
@@ -34,7 +34,7 @@ const Footer = () => {
               </div>
               <span className="text-xl font-bold">AI-ROS</span>
             </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">
+            <p className="text-sm text-gray-300 leading-relaxed">
               Pioneering AI-driven solutions for smart agriculture, cities, and industrial automation.
             </p>
             <div className="flex space-x-3">
@@ -59,7 +59,7 @@ const Footer = () => {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
+                    className="text-sm text-gray-300 hover:text-secondary transition-colors"
                   >
                     {link.label}
                   </a>
@@ -76,7 +76,7 @@ const Footer = () => {
                 <li key={solution.label}>
                   <a
                     href={solution.href}
-                    className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
+                    className="text-sm text-gray-300 hover:text-secondary transition-colors"
                   >
                     {solution.label}
                   </a>
@@ -93,7 +93,7 @@ const Footer = () => {
                 <Mail className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <a
                   href="mailto:info@ai-ros.com"
-                  className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
+                  className="text-sm text-gray-300 hover:text-secondary transition-colors"
                 >
                   info@ai-ros.com
                 </a>
@@ -102,14 +102,14 @@ const Footer = () => {
                 <Phone className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <a
                   href="tel:+1234567890"
-                  className="text-sm text-primary-foreground/80 hover:text-secondary transition-colors"
+                  className="text-sm text-gray-300 hover:text-secondary transition-colors"
                 >
                   +1 (234) 567-890
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
-                <span className="text-sm text-primary-foreground/80">
+                <span className="text-sm text-gray-300">
                   123 Tech Boulevard, Innovation City
                 </span>
               </li>
@@ -120,19 +120,19 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <p className="text-sm text-primary-foreground/60">
+            <p className="text-sm text-gray-400">
               © {currentYear} AI-ROS. All rights reserved.
             </p>
             <div className="flex space-x-6">
               <a
                 href="#"
-                className="text-sm text-primary-foreground/60 hover:text-secondary transition-colors"
+                className="text-sm text-gray-400 hover:text-secondary transition-colors"
               >
                 Privacy Policy
               </a>
               <a
                 href="#"
-                className="text-sm text-primary-foreground/60 hover:text-secondary transition-colors"
+                className="text-sm text-gray-400 hover:text-secondary transition-colors"
               >
                 Terms of Service
               </a>

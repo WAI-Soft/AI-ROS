@@ -45,9 +45,8 @@ const PartnersSection = () => {
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className={`text-center mb-16 transition-all duration-1000 ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-        }`}>
+        <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+          }`}>
           <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30 backdrop-blur-sm">
             <Award className="w-4 h-4 animate-glow-pulse" />
             Trusted Partners
@@ -60,9 +59,8 @@ const PartnersSection = () => {
           </p>
         </div>
 
-        <div className={`relative overflow-hidden transition-all duration-1000 delay-300 ${
-          isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-        }`}>
+        <div className={`relative overflow-hidden transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+          }`}>
           {/* Gradient Fade Effects */}
           <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-muted via-muted to-transparent z-10" />
           <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-muted via-muted to-transparent z-10" />
@@ -112,7 +110,7 @@ const PartnersSection = () => {
         }
 
         .animate-scroll {
-          animation: scroll 30s linear infinite;
+          animation: scroll 8s linear infinite;
         }
 
         .animate-scroll:hover {

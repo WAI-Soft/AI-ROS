@@ -24,7 +24,7 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-primary via-primary to-primary/90 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-[hsl(210,40%,8%)] via-[hsl(210,35%,12%)] to-[hsl(210,40%,8%)]/90 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0" style={{
@@ -49,10 +49,10 @@ const CTASection = () => {
           <div className={`transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-primary-foreground mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl sm:text-2xl text-primary-foreground/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
               Join industry leaders who trust AI-ROS to deliver innovative solutions. 
               Let's discuss how we can help you achieve your goals.
             </p>
@@ -71,28 +71,28 @@ const CTASection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="group border-2 border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/20 backdrop-blur-sm font-bold text-lg px-10 h-16 rounded-full hover:border-primary-foreground/50 transition-all duration-500 hover:scale-110"
+              className="group border-2 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm font-bold text-lg px-10 h-16 rounded-full hover:border-white/50 transition-all duration-500 hover:scale-110"
             >
               <Mail className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
               Contact Sales
             </Button>
           </div>
 
-          <div className={`mt-16 pt-12 border-t border-primary-foreground/20 transition-all duration-1000 delay-500 ${
+          <div className={`mt-16 pt-12 border-t border-white/20 transition-all duration-1000 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
               <div className="group transition-transform duration-500 hover:scale-110">
                 <div className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-3">30 min</div>
-                <div className="text-sm text-primary-foreground/80 font-semibold uppercase tracking-wide">Free Consultation</div>
+                <div className="text-sm text-white/80 font-semibold uppercase tracking-wide">Free Consultation</div>
               </div>
               <div className="group transition-transform duration-500 hover:scale-110">
                 <div className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-3">48 hrs</div>
-                <div className="text-sm text-primary-foreground/80 font-semibold uppercase tracking-wide">Response Time</div>
+                <div className="text-sm text-white/80 font-semibold uppercase tracking-wide">Response Time</div>
               </div>
               <div className="group transition-transform duration-500 hover:scale-110">
                 <div className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-3">100%</div>
-                <div className="text-sm text-primary-foreground/80 font-semibold uppercase tracking-wide">Confidential</div>
+                <div className="text-sm text-white/80 font-semibold uppercase tracking-wide">Confidential</div>
               </div>
             </div>
           </div>

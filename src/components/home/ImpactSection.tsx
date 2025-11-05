@@ -118,45 +118,43 @@ const ImpactSection = () => {
           {metrics.map((metric, index) => (
             <div
               key={metric.label}
-              className={`group relative p-10 rounded-3xl bg-card/80 backdrop-blur-sm border border-border hover:border-secondary/50 transition-all duration-1000 hover:shadow-2xl hover:shadow-secondary/20 hover:-translate-y-2 hover:scale-105 overflow-hidden ${
-                isVisible 
-                  ? 'opacity-100 translate-y-0 scale-100' 
-                  : 'opacity-0 translate-y-16 scale-90'
-              }`}
+              className={`group relative p-10 rounded-3xl bg-card/80 backdrop-blur-sm border border-border hover:border-secondary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-secondary/20 hover:-translate-y-2 hover:scale-105 overflow-hidden ${isVisible
+                ? 'opacity-100 translate-y-0 scale-100'
+                : 'opacity-0 translate-y-16 scale-90'
+                }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
               {/* Animated gradient background */}
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/5 via-transparent to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
+
               {/* Rotating gradient orb */}
               <div className="absolute -top-20 -right-20 w-48 h-48 bg-gradient-to-br from-secondary/20 to-accent/20 rounded-full blur-3xl group-hover:scale-150 group-hover:rotate-180 transition-all duration-1000" />
-              
+
               {/* Shimmer effect */}
               <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               </div>
-              
+
               {/* Top accent */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-              
+
               <div className="relative z-10 flex flex-col items-center text-center">
                 {/* Icon container with glow */}
                 <div className="relative mb-6">
                   <div className={`absolute inset-0 ${metric.color} opacity-20 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700`} />
-                  <div className="relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted group-hover:scale-110 transition-transform duration-500">
+                  <div className="relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted group-hover:scale-110 transition-transform duration-300">
                     <metric.icon className={`w-12 h-12 ${metric.color}`} />
                   </div>
                 </div>
-                
+
                 {/* Counter */}
-                <div className={`text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-foreground to-secondary bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-500 ${
-                  isVisible ? 'animate-counter' : ''
-                }`}>
+                <div className={`text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-foreground to-secondary bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300 ${isVisible ? 'animate-counter' : ''
+                  }`}>
                   <Counter value={metric.value} suffix={metric.suffix} />
                 </div>
-                
+
                 {/* Label */}
-                <div className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors duration-500 uppercase tracking-wide">
+                <div className="text-sm font-semibold text-muted-foreground group-hover:text-foreground transition-colors duration-300 uppercase tracking-wide">
                   {metric.label}
                 </div>
 

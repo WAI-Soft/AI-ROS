@@ -49,7 +49,11 @@ const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="px-4 py-2 text-sm font-medium text-foreground hover:text-secondary transition-colors rounded-lg hover:bg-muted"
+                className={`px-4 py-2 text-base font-medium transition-colors rounded-lg hover:bg-muted ${
+                  isScrolled 
+                    ? 'text-foreground hover:text-secondary' 
+                    : 'text-white/90 hover:text-white'
+                }`}
               >
                 {item.label}
               </a>
@@ -95,7 +99,11 @@ const Header = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  className="px-4 py-3 text-sm font-medium text-foreground hover:text-secondary hover:bg-muted rounded-lg transition-colors"
+                  className={`px-4 py-3 text-base font-medium hover:bg-muted rounded-lg transition-colors ${
+                    isScrolled 
+                      ? 'text-foreground hover:text-secondary' 
+                      : 'text-white/90 hover:text-white'
+                  }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.label}
