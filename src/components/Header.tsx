@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
+import { useLocation, Link } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'en' | 'ar'>('en');
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,15 +19,23 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' },
+    { label: 'About', href: '/about' },
+    { label: 'Solutions', href: '/solutions/smart-agriculture' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'ar' : 'en');
+  };
+
+  const isActive = (href: string) => {
+    if (href === '/') {
+      return location.pathname === '/';
+    }
+    return location.pathname.startsWith(href);
   };
 
   return (
@@ -36,28 +47,37 @@ const Header = () => {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center space-x-2 group">
+          <Link to="/" className="flex items-center space-x-2 group">
             <div className="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-transform">
               <span className="text-white font-bold text-xl">AI</span>
             </div>
             <span className="text-xl font-bold text-foreground hidden sm:block">AI-ROS</span>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className={`px-4 py-2 text-base font-medium transition-colors rounded-lg hover:bg-muted ${
-                  isScrolled 
-                    ? 'text-foreground hover:text-secondary' 
-                    : 'text-white/90 hover:text-white'
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className={cn(
+                    'px-4 py-2 text-base font-medium transition-all rounded-lg relative',
+                    active
+                      ? 'text-secondary bg-secondary/10 font-semibold'
+                      : isScrolled 
+                      ? 'text-foreground hover:text-secondary hover:bg-muted' 
+                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                  )}
+                >
+                  {item.label}
+                  {active && (
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-secondary rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Actions */}
@@ -93,22 +113,31 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 animate-slide-in">
+          <div className="md:hidden py-4 animate-slide-in bg-background/95 backdrop-blur-md rounded-lg shadow-lg">
             <div className="flex flex-col space-y-2">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className={`px-4 py-3 text-base font-medium hover:bg-muted rounded-lg transition-colors ${
-                    isScrolled 
-                      ? 'text-foreground hover:text-secondary' 
-                      : 'text-white/90 hover:text-white'
-                  }`}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.href}
+                    className={cn(
+                      'px-4 py-3 text-base font-medium rounded-lg transition-all relative',
+                      active
+                        ? 'text-secondary bg-secondary/10 font-semibold'
+                        : isScrolled 
+                        ? 'text-foreground hover:text-secondary hover:bg-muted' 
+                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                    )}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                    {active && (
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-secondary rounded-r-full" />
+                    )}
+                  </Link>
+                );
+              })}
               <div className="flex items-center space-x-3 px-4 pt-4 border-t border-border">
                 <Button
                   variant="outline"

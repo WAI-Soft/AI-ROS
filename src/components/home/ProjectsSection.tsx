@@ -131,28 +131,9 @@ const ProjectsSection = () => {
                     {project.title}
                   </h3>
 
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <p className="text-muted-foreground mb-6 leading-relaxed flex-grow">
                     {project.description}
                   </p>
-
-                  <div className="grid grid-cols-3 gap-3 mb-6 pb-6 border-b border-border group-hover:border-secondary/30 transition-colors duration-500">
-                    {project.stats.map((stat, idx) => (
-                      <div 
-                        key={stat} 
-                        className={`text-center p-3 rounded-xl bg-muted/50 backdrop-blur-sm transform transition-all duration-500 group-hover:bg-secondary/10 ${
-                          visibleCards[index] ? 'scale-100 opacity-100' : 'scale-90 opacity-0'
-                        }`}
-                        style={{ transitionDelay: `${(index * 200) + (idx * 100)}ms` }}
-                      >
-                        <div className="text-lg font-bold text-secondary mb-1">
-                          {stat.split(' ')[0]}
-                        </div>
-                        <div className="text-xs text-muted-foreground font-medium">
-                          {stat.split(' ').slice(1).join(' ')}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
 
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag, idx) => (
@@ -169,14 +150,15 @@ const ProjectsSection = () => {
                   </div>
 
                   <Button
-                    variant="ghost"
-                    className="group/btn relative text-secondary hover:text-secondary p-0 h-auto font-semibold w-full justify-center mt-auto"
+                    variant="default"
+                    size="lg"
+                    className="group/btn relative w-full bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary text-white font-bold shadow-lg hover:shadow-xl hover:shadow-secondary/50 transition-all duration-500 hover:scale-105 mt-auto overflow-hidden"
                   >
-                    <span className="relative z-10 flex items-center">
+                    <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000" />
+                    <span className="relative z-10 flex items-center justify-center gap-2">
                       View Project Details
-                      <ExternalLink className="ml-2 w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-300" />
+                      <ExternalLink className="w-5 h-5 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-all duration-300" />
                     </span>
-                    <div className="absolute inset-0 -inset-x-2 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-lg opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
                   </Button>
                 </CardContent>
               </Card>
