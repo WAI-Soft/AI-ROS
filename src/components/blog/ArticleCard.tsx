@@ -36,12 +36,16 @@ const ArticleCard = ({ article, delay = 0 }: ArticleCardProps) => {
         className="h-full overflow-hidden cursor-pointer"
       >
         {/* Featured Image */}
-        <div className="relative h-56 overflow-hidden">
+        <div className="relative h-56 overflow-hidden bg-muted">
           <img
             src={article.featured_image}
             alt={article.title}
             className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             loading="lazy"
+            decoding="async"
+            onError={(e) => {
+              e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="600"%3E%3Crect fill="%23374151" width="800" height="600"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="%239ca3af" font-size="20"%3EImage%3C/text%3E%3C/svg%3E';
+            }}
           />
           
           {/* Gradient Overlay */}
@@ -92,7 +96,13 @@ const ArticleCard = ({ article, delay = 0 }: ArticleCardProps) => {
               <img
                 src={article.author.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.name)}&size=32&background=0ea5e9&color=fff`}
                 alt={article.author.name}
-                className="w-8 h-8 rounded-full"
+                className="w-8 h-8 rounded-full bg-muted"
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  const initial = article.author.name.charAt(0).toUpperCase();
+                  e.currentTarget.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32"%3E%3Ccircle fill="%230ea5e9" cx="16" cy="16" r="16"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="14" font-weight="bold"%3E${initial}%3C/text%3E%3C/svg%3E`;
+                }}
               />
               <span className="text-sm font-medium text-foreground">{article.author.name}</span>
             </div>

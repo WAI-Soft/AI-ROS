@@ -9,7 +9,7 @@ const LeadershipTeamSection = () => {
   const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [sectionRef, isVisible] = useIntersectionObserver({
+  const [sectionRef, isVisible] = useIntersectionObserver<HTMLDivElement>({
     threshold: 0.1,
     freezeOnceVisible: true,
   });

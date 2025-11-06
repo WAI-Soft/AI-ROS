@@ -1,4 +1,5 @@
 import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,16 +11,17 @@ const Footer = () => {
   ];
 
   const quickLinks = [
-    { label: 'About Us', href: '#about' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Home', href: '/' },
+    { label: 'About Us', href: '/about' },
+    { label: 'Projects', href: '/projects' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'Contact', href: '/contact' },
   ];
 
   const solutions = [
-    { label: 'Smart Agriculture', href: '#solutions' },
-    { label: 'Smart Cities', href: '#solutions' },
-    { label: 'Industrial Automation', href: '#solutions' },
+    { label: 'Smart Agriculture', href: '/solutions/smart-agriculture' },
+    { label: 'Smart Cities', href: '/solutions/smart-cities' },
+    { label: 'Industrial Automation', href: '/solutions/industrial-automation' },
   ];
 
   return (
@@ -57,12 +59,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-gray-300 hover:text-secondary transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -74,12 +76,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {solutions.map((solution) => (
                 <li key={solution.label}>
-                  <a
-                    href={solution.href}
+                  <Link
+                    to={solution.href}
                     className="text-sm text-gray-300 hover:text-secondary transition-colors"
                   >
                     {solution.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

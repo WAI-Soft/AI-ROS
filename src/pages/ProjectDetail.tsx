@@ -1,13 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ProjectBanner from '@/components/project-detail/ProjectBanner';
-import QuickFacts from '@/components/project-detail/QuickFacts';
 import SectionContainer from '@/components/shared/SectionContainer';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Download, ArrowLeft, Building2, Calendar, MapPin, TrendingUp } from 'lucide-react';
 import { api } from '@/lib/api';
+import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
 
 interface ProjectDetail {
   title: string;
@@ -26,6 +25,10 @@ const ProjectDetail = () => {
   const { slug } = useParams<{ slug: string }>();
   const [project, setProject] = useState<ProjectDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [heroRef, heroVisible] = useIntersectionObserver<HTMLElement>({
+    threshold: 0.1,
+    freezeOnceVisible: true,
+  });
 
   useEffect(() => {
     const fetchProject = async () => {
@@ -68,106 +71,257 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <Header />
       <main>
-        <ProjectBanner
-          title={project.title}
-          categories={project.categories}
-          image={project.banner_image_url}
-        />
+        {/* Hero Section with Background Image */}
+        <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden py-24">
+          {/* Background Image with Overlay */}
+          <div className="absolute inset-0">
+            <img
+              src={project.banner_image_url}
+              alt={project.title}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-[hsl(210,40%,8%)]/80 via-[hsl(210,40%,8%)]/75 to-[hsl(210,40%,8%)]/80" />
+          </div>
 
-        {/* Main Content */}
-        <SectionContainer background="default">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-3 gap-12">
-              {/* Main Content */}
-              <div className="lg:col-span-2 space-y-12">
-                {/* Description */}
-                <div className="prose prose-lg max-w-none">
-                  <div
-                    className="text-muted-foreground leading-relaxed"
-                    dangerouslySetInnerHTML={{ __html: project.description }}
-                  />
+          {/* Content */}
+          <div className="relative z-40 container mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div className="max-w-6xl mx-auto">
+              {/* Back Button */}
+              <Link to="/projects" className={`inline-block mb-8 transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-1 translate-y-4'}`}>
+                <Button
+                  variant="ghost"
+                  className="text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm border border-white/20"
+                >
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  Back to Projects
+                </Button>
+              </Link>
+
+              {/* Categories */}
+              <div className={`flex flex-wrap gap-3 mb-8 transition-all duration-700 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-1 translate-y-4'}`}>
+                {project.categories.map((category, index) => (
+                  <span
+                    key={category}
+                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md text-emerald-300 text-sm font-bold border border-emerald-500/30"
+                    style={{ transitionDelay: `${index * 50}ms` }}
+                  >
+                    {category}
+                  </span>
+                ))}
+              </div>
+
+              {/* Title */}
+              <h1 className={`text-4xl sm:text-5xl lg:text-6xl font-black text-white mb-10 leading-[1.1] drop-shadow-2xl transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-1 translate-y-4'}`}>
+                {project.title}
+              </h1>
+
+              {/* Quick Facts Bar */}
+              <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 transition-all duration-700 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-1 translate-y-4'}`}>
+                {project.client && (
+                  <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-center">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <Building2 className="w-4 h-4 text-emerald-400" />
+                      <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Client</span>
+                    </div>
+                    <div className="text-white font-bold">{project.client}</div>
+                  </div>
+                )}
+                <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-center">
+                  <div className="flex items-center justify-center gap-2 mb-2">
+                    <Calendar className="w-4 h-4 text-teal-400" />
+                    <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Year</span>
+                  </div>
+                  <div className="text-white font-bold">{project.year}</div>
+                </div>
+                {project.location && (
+                  <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-center">
+                    <div className="flex items-center justify-center gap-2 mb-2">
+                      <MapPin className="w-4 h-4 text-cyan-400" />
+                      <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Location</span>
+                    </div>
+                    <div className="text-white font-bold">{project.location}</div>
+                  </div>
+                )}
+              </div>
+
+              {/* Impact & Results */}
+              <div className={`transition-all duration-700 delay-400 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-1 translate-y-4'}`}>
+                <div className="text-center mb-8">
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-4 text-sm font-bold text-emerald-300 bg-emerald-500/20 rounded-full border border-emerald-500/30 backdrop-blur-md">
+                    <TrendingUp className="w-4 h-4" />
+                    Impact & Results
+                  </div>
+                  <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
+                    Measurable Success
+                  </h2>
                 </div>
 
-                {/* Tech Stack */}
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground mb-6">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-3">
-                    {project.tech_stack.map((tech) => (
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                  {Object.entries(project.key_metrics).map(([key, value], index) => (
+                    <div
+                      key={key}
+                      className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 hover:border-emerald-400/50 transition-all duration-500 hover:-translate-y-1 text-center"
+                      style={{ transitionDelay: `${index * 100}ms` }}
+                    >
+                      <div className="text-4xl md:text-5xl font-black text-white mb-2">
+                        {value}
+                      </div>
+                      <div className="text-xs font-bold text-white/70 uppercase tracking-wider">
+                        {key.replace(/_/g, ' ')}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Decorative Elements */}
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl z-10" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl z-10" />
+        </section>
+
+        {/* Project Description */}
+        <section className="relative py-24 bg-gradient-to-b from-muted/30 via-background to-muted/20 overflow-hidden">
+          {/* Decorative Background Elements */}
+          <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
+            <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-40 left-10 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
+          </div>
+
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div className="max-w-5xl mx-auto">
+              {/* Section Header */}
+              <div className="text-center mb-16">
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-6 text-sm font-bold text-emerald-400 bg-emerald-500/10 rounded-full border border-emerald-500/20">
+                  <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                  Project Deep Dive
+                </div>
+                <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
+                  Complete Case Study
+                </h2>
+                <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+                  Explore the full journey from challenge to solution and measurable impact
+                </p>
+              </div>
+
+              {/* Blur Card Container */}
+              <div className="p-8 md:p-12 lg:p-16 rounded-3xl bg-card/40 backdrop-blur-xl border border-border/50 shadow-2xl">
+                {/* Enhanced Article Content */}
+                <article className="prose prose-xl max-w-none text-center
+                  prose-headings:font-black prose-headings:tracking-tight prose-headings:text-center
+                  prose-h2:text-4xl prose-h2:mt-20 prose-h2:mb-10 prose-h2:first:mt-0
+                  prose-h2:pb-5 prose-h2:border-b-2 prose-h2:border-border/50
+                  prose-h2:bg-gradient-to-r prose-h2:from-emerald-400 prose-h2:via-teal-400 prose-h2:to-cyan-400 
+                  prose-h2:bg-clip-text prose-h2:text-transparent
+                  prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:text-foreground
+                  prose-h3:flex prose-h3:items-center prose-h3:justify-center prose-h3:gap-3
+                  prose-h3:before:content-[''] prose-h3:before:w-1 prose-h3:before:h-6 
+                  prose-h3:before:bg-gradient-to-b prose-h3:before:from-emerald-400 prose-h3:before:to-teal-400 
+                  prose-h3:before:rounded-full
+                  prose-p:text-muted-foreground prose-p:leading-[1.9] prose-p:text-lg prose-p:mb-6 prose-p:text-center
+                  prose-p:first-of-type:text-xl prose-p:first-of-type:leading-relaxed
+                  prose-ul:my-8 prose-ul:space-y-4 prose-ul:text-left prose-ul:max-w-3xl prose-ul:mx-auto
+                  prose-li:text-muted-foreground prose-li:text-lg prose-li:leading-relaxed
+                  prose-li:pl-3 prose-li:marker:text-emerald-400 prose-li:marker:text-2xl
+                  prose-strong:text-foreground prose-strong:font-bold
+                  prose-strong:bg-gradient-to-r prose-strong:from-emerald-400/10 prose-strong:to-transparent
+                  prose-strong:px-1 prose-strong:py-0.5 prose-strong:rounded
+                ">
+                  <div dangerouslySetInnerHTML={{ __html: project.description }} />
+                </article>
+
+                {/* Tech Stack Section */}
+                <div className="mt-20 pt-8 border-t border-border/50">
+                  <h3 className="text-2xl font-black text-foreground mb-6 flex items-center justify-center gap-3">
+                    <div className="w-1 h-6 bg-gradient-to-b from-emerald-400 to-teal-400 rounded-full" />
+                    Technology Stack
+                  </h3>
+                  <div className="flex flex-wrap gap-3 justify-center">
+                    {project.tech_stack.map((tech, index) => (
                       <span
                         key={tech}
-                        className="px-4 py-2 rounded-full bg-gradient-to-r from-card to-muted border border-border text-foreground font-medium hover:border-secondary/50 transition-colors"
+                        className="px-5 py-3 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 
+                          border border-emerald-500/20 text-foreground font-semibold text-sm
+                          hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10
+                          transition-all duration-300 hover:-translate-y-1"
+                        style={{ 
+                          animationDelay: `${index * 50}ms`,
+                          animation: 'fadeInUp 0.5s ease-out forwards'
+                        }}
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
                 </div>
-
-                {/* Download CTA */}
-                <div className="p-8 rounded-2xl bg-gradient-to-br from-secondary/10 to-accent/10 border border-secondary/20">
-                  <h3 className="text-2xl font-bold text-foreground mb-3">
-                    Want to Learn More?
-                  </h3>
-                  <p className="text-muted-foreground mb-6">
-                    Download the complete case study with detailed technical specifications and results.
-                  </p>
-                  <Button
-                    size="lg"
-                    className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white font-semibold"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download Case Study
-                  </Button>
-                </div>
-              </div>
-
-              {/* Sidebar */}
-              <div className="lg:col-span-1">
-                <QuickFacts
-                  client={project.client}
-                  year={project.year}
-                  location={project.location}
-                  metrics={project.key_metrics}
-                />
               </div>
             </div>
           </div>
-        </SectionContainer>
+        </section>
+
+        {/* Download CTA */}
+        <section className="py-20 bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto">
+              <div className="p-12 rounded-3xl bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-xl border border-border/50 shadow-2xl text-center">
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center mx-auto mb-6">
+                  <Download className="w-8 h-8 text-emerald-400" />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-black text-foreground mb-4">
+                  Want to Learn More?
+                </h3>
+                <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+                  Download the complete case study with detailed technical specifications, implementation process, and comprehensive results analysis.
+                </p>
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:opacity-90 text-white font-bold text-lg px-8 shadow-lg shadow-emerald-500/30"
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download Full Case Study
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* CTA Section */}
-        <SectionContainer background="muted">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Ready to Transform Your Business?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Let's discuss how we can create a similar solution tailored to your specific needs.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white font-semibold text-lg px-8"
-                asChild
-              >
-                <a href="/contact">
-                  Request a Demo
-                  <ArrowRight className="w-5 h-5 ml-2" />
-                </a>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-2 border-border hover:border-secondary/50 font-semibold text-lg px-8"
-                asChild
-              >
-                <a href="/projects">View More Projects</a>
-              </Button>
+        <section className="py-24 bg-muted/50">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-foreground mb-6">
+                Ready to Transform Your Business?
+              </h2>
+              <p className="text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
+                Let's discuss how we can create a similar solution tailored to your specific needs and challenges.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:opacity-90 text-white font-bold text-lg px-10 py-6 shadow-xl shadow-emerald-500/30"
+                  asChild
+                >
+                  <a href="/contact">
+                    Request a Demo
+                    <ArrowRight className="w-5 h-5 ml-2" />
+                  </a>
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-2 border-border hover:border-emerald-500/50 font-bold text-lg px-10 py-6"
+                  asChild
+                >
+                  <a href="/projects">View More Projects</a>
+                </Button>
+              </div>
             </div>
           </div>
-        </SectionContainer>
+        </section>
       </main>
       <Footer />
     </div>

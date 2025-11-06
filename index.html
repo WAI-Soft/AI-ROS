@@ -19,6 +19,13 @@
 
   <body>
     <div id="root"></div>
+    <script>
+      // Disable scroll restoration and force scroll to top on page load
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

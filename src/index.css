@@ -97,14 +97,17 @@ All colors MUST be HSL.
 @layer utilities {
   /* Animation utilities */
   .animate-fade-in {
+    opacity: 1; /* Ensure content is visible by default */
     animation: fadeIn 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .animate-fade-in-up {
+    opacity: 1; /* Ensure content is visible by default */
     animation: fadeInUp 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
   .animate-fade-in-down {
+    opacity: 1; /* Ensure content is visible by default */
     animation: fadeInDown 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
