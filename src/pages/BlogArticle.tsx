@@ -123,7 +123,7 @@ const BlogArticle = () => {
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-muted z-50">
         <div
-          className="h-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 transition-all duration-300"
+          className="h-full bg-gradient-to-r from-amber-700 via-orange-800 to-yellow-700 transition-all duration-300"
           style={{ width: `${readingProgress}%` }}
         />
       </div>
@@ -166,7 +166,7 @@ const BlogArticle = () => {
                 {article.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md text-emerald-300 text-sm font-bold border border-emerald-500/30"
+                    className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-700/20 to-orange-800/20 backdrop-blur-md text-amber-500 text-sm font-bold border border-amber-700/30"
                   >
                     {tag}
                   </span>
@@ -184,7 +184,7 @@ const BlogArticle = () => {
                   <img
                     src={article.author.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.name)}&size=64&background=10b981&color=fff`}
                     alt={article.author.name}
-                    className="w-14 h-14 rounded-full ring-2 ring-emerald-400/50"
+                    className="w-14 h-14 rounded-full ring-2 ring-amber-600/50"
                     loading="lazy"
                     onError={(e) => {
                       e.currentTarget.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="64" height="64"%3E%3Ccircle fill="%2310b981" cx="32" cy="32" r="32"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="24" font-weight="bold"%3E' + article.author.name.charAt(0) + '%3C/text%3E%3C/svg%3E';
@@ -217,8 +217,8 @@ const BlogArticle = () => {
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-700/10 rounded-full blur-3xl" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-800/10 rounded-full blur-3xl" />
         </section>
 
         {/* Article Content */}
@@ -234,32 +234,32 @@ const BlogArticle = () => {
                   </div>
                   <button
                     onClick={() => handleShare('twitter')}
-                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-sky-500/20 hover:to-sky-600/20 border border-border hover:border-sky-500/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-sky-500/20"
+                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-amber-600/20 hover:to-sky-600/20 border border-border hover:border-amber-600/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-amber-600/20"
                     aria-label="Share on Twitter"
                   >
-                    <Twitter className="w-4 h-4 text-muted-foreground group-hover:text-sky-400 transition-colors" />
+                    <Twitter className="w-4 h-4 text-muted-foreground group-hover:text-amber-500 transition-colors" />
                   </button>
                   <button
                     onClick={() => handleShare('linkedin')}
-                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-blue-500/20 hover:to-blue-600/20 border border-border hover:border-blue-500/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
+                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-amber-800/20 hover:to-blue-600/20 border border-border hover:border-amber-800/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-amber-800/20"
                     aria-label="Share on LinkedIn"
                   >
-                    <Linkedin className="w-4 h-4 text-muted-foreground group-hover:text-blue-400 transition-colors" />
+                    <Linkedin className="w-4 h-4 text-muted-foreground group-hover:text-amber-700 transition-colors" />
                   </button>
                   <button
                     onClick={() => handleShare('facebook')}
-                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-blue-500/20 hover:to-indigo-600/20 border border-border hover:border-blue-500/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-blue-500/20"
+                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-amber-800/20 hover:to-orange-900/20 border border-border hover:border-amber-800/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-amber-800/20"
                     aria-label="Share on Facebook"
                   >
-                    <Facebook className="w-4 h-4 text-muted-foreground group-hover:text-blue-400 transition-colors" />
+                    <Facebook className="w-4 h-4 text-muted-foreground group-hover:text-amber-700 transition-colors" />
                   </button>
                   <div className="w-full h-px bg-border my-1" />
                   <button
                     onClick={() => handleShare('copy')}
-                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-emerald-500/20 hover:to-teal-600/20 border border-border hover:border-emerald-500/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-emerald-500/20"
+                    className="group relative w-12 h-12 rounded-xl bg-gradient-to-br from-card to-card/80 hover:from-amber-700/20 hover:to-teal-600/20 border border-border hover:border-amber-700/50 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-amber-700/20"
                     aria-label="Copy link"
                   >
-                    <LinkIcon className="w-4 h-4 text-muted-foreground group-hover:text-emerald-400 transition-colors" />
+                    <LinkIcon className="w-4 h-4 text-muted-foreground group-hover:text-amber-600 transition-colors" />
                   </button>
                 </div>
               </div>
@@ -272,26 +272,26 @@ const BlogArticle = () => {
                   prose-headings:font-black prose-headings:tracking-tight prose-headings:mb-6
                   prose-h2:text-4xl prose-h2:mt-16 prose-h2:mb-8 
                   prose-h2:pb-4 prose-h2:border-b prose-h2:border-border/50
-                  prose-h2:bg-gradient-to-r prose-h2:from-emerald-400 prose-h2:via-teal-400 prose-h2:to-cyan-400 
+                  prose-h2:bg-gradient-to-r prose-h2:from-amber-600 prose-h2:via-orange-700 prose-h2:to-yellow-600 
                   prose-h2:bg-clip-text prose-h2:text-transparent
                   prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:text-foreground prose-h3:font-bold
                   prose-p:text-muted-foreground prose-p:leading-[1.8] prose-p:text-lg prose-p:mb-8
                   prose-p:first-of-type:text-xl prose-p:first-of-type:leading-[1.7] prose-p:first-of-type:text-foreground/90
-                  prose-a:text-emerald-400 prose-a:no-underline prose-a:font-semibold 
-                  prose-a:border-b-2 prose-a:border-emerald-400/30 
-                  hover:prose-a:text-emerald-300 hover:prose-a:border-emerald-300/50 prose-a:transition-all
+                  prose-a:text-amber-600 prose-a:no-underline prose-a:font-semibold 
+                  prose-a:border-b-2 prose-a:border-amber-600/30 
+                  hover:prose-a:text-amber-500 hover:prose-a:border-amber-500/50 prose-a:transition-all
                   prose-strong:text-foreground prose-strong:font-bold
-                  prose-code:text-emerald-400 prose-code:bg-emerald-500/10 
+                  prose-code:text-amber-600 prose-code:bg-amber-700/10 
                   prose-code:px-2 prose-code:py-1 prose-code:rounded-lg 
                   prose-code:font-mono prose-code:text-base prose-code:font-semibold
-                  prose-code:border prose-code:border-emerald-500/20
+                  prose-code:border prose-code:border-amber-700/20
                   prose-ul:my-8 prose-ul:space-y-3
                   prose-li:text-muted-foreground prose-li:text-lg prose-li:leading-relaxed
-                  prose-li:pl-2 prose-li:marker:text-emerald-400 prose-li:marker:text-xl
-                  prose-blockquote:border-l-4 prose-blockquote:border-emerald-500 
+                  prose-li:pl-2 prose-li:marker:text-amber-600 prose-li:marker:text-xl
+                  prose-blockquote:border-l-4 prose-blockquote:border-amber-700 
                   prose-blockquote:pl-8 prose-blockquote:py-4 prose-blockquote:my-8
                   prose-blockquote:italic prose-blockquote:text-foreground/80
-                  prose-blockquote:bg-emerald-500/5 prose-blockquote:rounded-r-2xl
+                  prose-blockquote:bg-amber-700/5 prose-blockquote:rounded-r-2xl
                   prose-img:rounded-2xl prose-img:shadow-2xl prose-img:my-12
                 ">
                   <div dangerouslySetInnerHTML={{ __html: article.content }} />
@@ -306,7 +306,7 @@ const BlogArticle = () => {
                       {article.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10 text-emerald-400 text-sm font-bold border border-emerald-500/30 hover:border-emerald-500/60 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-300 hover:scale-105 cursor-pointer"
+                          className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-700/10 via-orange-800/10 to-yellow-700/10 text-amber-600 text-sm font-bold border border-amber-700/30 hover:border-amber-700/60 hover:shadow-lg hover:shadow-amber-700/20 transition-all duration-300 hover:scale-105 cursor-pointer"
                         >
                           #{tag.toLowerCase().replace(/\s+/g, '')}
                         </span>
@@ -320,31 +320,31 @@ const BlogArticle = () => {
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                       <button
                         onClick={() => handleShare('twitter')}
-                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-sky-500/20 hover:to-sky-600/20 border border-border hover:border-sky-500/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-sky-500/20"
+                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-amber-600/20 hover:to-sky-600/20 border border-border hover:border-amber-600/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-600/20"
                       >
-                        <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-sky-400 transition-colors" />
-                        <span className="text-xs font-bold text-muted-foreground group-hover:text-sky-400 transition-colors">Twitter</span>
+                        <Twitter className="w-5 h-5 text-muted-foreground group-hover:text-amber-500 transition-colors" />
+                        <span className="text-xs font-bold text-muted-foreground group-hover:text-amber-500 transition-colors">Twitter</span>
                       </button>
                       <button
                         onClick={() => handleShare('linkedin')}
-                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-blue-500/20 hover:to-blue-600/20 border border-border hover:border-blue-500/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-amber-800/20 hover:to-blue-600/20 border border-border hover:border-amber-800/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-800/20"
                       >
-                        <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
-                        <span className="text-xs font-bold text-muted-foreground group-hover:text-blue-400 transition-colors">LinkedIn</span>
+                        <Linkedin className="w-5 h-5 text-muted-foreground group-hover:text-amber-700 transition-colors" />
+                        <span className="text-xs font-bold text-muted-foreground group-hover:text-amber-700 transition-colors">LinkedIn</span>
                       </button>
                       <button
                         onClick={() => handleShare('facebook')}
-                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-blue-500/20 hover:to-indigo-600/20 border border-border hover:border-blue-500/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-blue-500/20"
+                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-amber-800/20 hover:to-orange-900/20 border border-border hover:border-amber-800/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-800/20"
                       >
-                        <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-blue-400 transition-colors" />
-                        <span className="text-xs font-bold text-muted-foreground group-hover:text-blue-400 transition-colors">Facebook</span>
+                        <Facebook className="w-5 h-5 text-muted-foreground group-hover:text-amber-700 transition-colors" />
+                        <span className="text-xs font-bold text-muted-foreground group-hover:text-amber-700 transition-colors">Facebook</span>
                       </button>
                       <button
                         onClick={() => handleShare('copy')}
-                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-emerald-500/20 hover:to-teal-600/20 border border-border hover:border-emerald-500/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-emerald-500/20"
+                        className="group px-5 py-4 rounded-2xl bg-gradient-to-br from-card to-card/80 hover:from-amber-700/20 hover:to-teal-600/20 border border-border hover:border-amber-700/50 flex flex-col items-center justify-center gap-2 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-amber-700/20"
                       >
-                        <LinkIcon className="w-5 h-5 text-muted-foreground group-hover:text-emerald-400 transition-colors" />
-                        <span className="text-xs font-bold text-muted-foreground group-hover:text-emerald-400 transition-colors">Copy</span>
+                        <LinkIcon className="w-5 h-5 text-muted-foreground group-hover:text-amber-600 transition-colors" />
+                        <span className="text-xs font-bold text-muted-foreground group-hover:text-amber-600 transition-colors">Copy</span>
                       </button>
                     </div>
                   </div>

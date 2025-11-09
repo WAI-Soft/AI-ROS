@@ -25,12 +25,14 @@ const Projects = () => {
 
   // Mock data for categories and years
   const categories = [
-    { id: 'smart-agriculture', name: 'Smart Agriculture', count: 12 },
-    { id: 'smart-cities', name: 'Smart Cities', count: 8 },
-    { id: 'industrial-automation', name: 'Industrial Automation', count: 15 },
+    { id: 'smart-agriculture', name: 'Smart Agriculture', count: 2 },
+    { id: 'smart-cities', name: 'Smart Cities', count: 1 },
+    { id: 'sustainability', name: 'Sustainability', count: 3 },
+    { id: 'technology', name: 'Technology', count: 3 },
+    { id: 'education', name: 'Education', count: 1 },
   ];
 
-  const years = [2024, 2023, 2022, 2021, 2020];
+  const years = [2025, 2024, 2023, 2022, 2021, 2020];
 
   // Fetch projects
   useEffect(() => {
@@ -38,29 +40,38 @@ const Projects = () => {
       try {
         setLoading(true);
 
-        // Build query params
-        const params: any = {
-          page: currentPage,
-          per_page: 12,
-        };
+        // Filter mock data based on current filters
+        let filteredProjects = [...mockProjects];
 
-        if (filters.category) params.category = filters.category;
-        if (filters.year) params.year = filters.year;
-        if (filters.search) params.search = filters.search;
-
-        // API call (will use mock data if API fails)
-        const data = await api.get<{ data: Project[]; has_more: boolean }>('/projects', { params });
-
-        if (currentPage === 1) {
-          setProjects(data.data);
-        } else {
-          setProjects((prev) => [...prev, ...data.data]);
+        // Filter by category
+        if (filters.category) {
+          filteredProjects = filteredProjects.filter((project) =>
+            project.categories.some((cat) => 
+              cat.toLowerCase().replace(' ', '-') === filters.category
+            )
+          );
         }
 
-        setHasMore(data.has_more);
+        // Filter by year
+        if (filters.year) {
+          filteredProjects = filteredProjects.filter((project) => project.year === filters.year);
+        }
+
+        // Filter by search query
+        if (filters.search && filters.search.trim() !== '') {
+          const searchLower = filters.search.toLowerCase();
+          filteredProjects = filteredProjects.filter((project) =>
+            project.title.toLowerCase().includes(searchLower) ||
+            project.excerpt.toLowerCase().includes(searchLower) ||
+            project.location.toLowerCase().includes(searchLower) ||
+            project.categories.some((cat) => cat.toLowerCase().includes(searchLower))
+          );
+        }
+
+        setProjects(filteredProjects);
+        setHasMore(false);
       } catch (error) {
         console.error('Error fetching projects:', error);
-        // Use mock data
         setProjects(mockProjects);
         setHasMore(false);
       } finally {
@@ -141,58 +152,49 @@ const Projects = () => {
 // Mock data for development
 const mockProjects: Project[] = [
   {
-    slug: 'automated-vineyard-management',
-    title: 'Automated Vineyard Management System',
-    excerpt: 'AI-powered precision agriculture solution reducing water consumption by 40% while increasing yield by 25% across 5,000 hectares.',
-    banner_image_url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop',
-    categories: ['Smart Agriculture'],
+    slug: 'green-delta-project',
+    title: 'Green Delta Project',
+    excerpt: 'Soil-Sense deployment in Egypt\'s Delta region, reducing irrigation by 35%. Smart irrigation assistant using IoT sensors and AI algorithms to monitor moisture, nutrients, and environmental conditions.',
+    banner_image_url: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&h=600&fit=crop',
+    categories: ['Smart Agriculture', 'Sustainability'],
     year: 2024,
-    location: 'Napa Valley, CA',
+    location: 'Nile Delta, Egypt',
   },
   {
-    slug: 'smart-traffic-optimization',
-    title: 'Smart Traffic Optimization Platform',
-    excerpt: 'Intelligent traffic management system reducing congestion by 30% and improving emergency response times by 40%.',
-    banner_image_url: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=600&fit=crop',
-    categories: ['Smart Cities'],
+    slug: 'urban-wellness-labs',
+    title: 'Urban Wellness Labs',
+    excerpt: 'Cozy Earth pilot in Cairo & Berlin to improve indoor air quality in co-working hubs. VR-powered, AI-guided plant recommendation engine based on local pollution data and oxygen needs.',
+    banner_image_url: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=600&fit=crop',
+    categories: ['Smart Cities', 'Sustainability'],
     year: 2024,
-    location: 'Singapore',
+    location: 'Cairo & Berlin',
   },
   {
-    slug: 'predictive-maintenance-manufacturing',
-    title: 'Predictive Maintenance for Manufacturing',
-    excerpt: 'AI-driven predictive maintenance achieving 99.5% uptime and reducing maintenance costs by 40% in automotive production.',
-    banner_image_url: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop',
-    categories: ['Industrial Automation'],
-    year: 2023,
-    location: 'Detroit, MI',
+    slug: 'agroedge',
+    title: 'AgroEdge',
+    excerpt: 'GROW+ integration with drones for field monitoring in smallholder farms. AI-based plant disease detection platform supporting over 30 species, empowering farmers with early diagnosis.',
+    banner_image_url: 'https://images.unsplash.com/photo-1473773508845-188df298d2d1?w=800&h=600&fit=crop',
+    categories: ['Smart Agriculture', 'Technology'],
+    year: 2024,
+    location: 'Sub-Saharan Africa',
   },
   {
-    slug: 'precision-irrigation-system',
-    title: 'Precision Irrigation Network',
-    excerpt: 'IoT-enabled irrigation system optimizing water usage across 10,000 acres, saving 2 million gallons annually.',
-    banner_image_url: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?w=800&h=600&fit=crop',
-    categories: ['Smart Agriculture'],
-    year: 2023,
-    location: 'Central Valley, CA',
+    slug: 'policysim',
+    title: 'PolicySim',
+    excerpt: 'RaG SaaS tool used by NGOs for carbon policy simulations. Retrieval-Augmented Generation platform for building decision-support agents trained on policies, documents, and data.',
+    banner_image_url: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop',
+    categories: ['Technology', 'Sustainability'],
+    year: 2024,
+    location: 'Global',
   },
   {
-    slug: 'urban-energy-grid',
-    title: 'Urban Smart Energy Grid',
-    excerpt: 'Intelligent energy distribution system reducing city-wide energy consumption by 20% and integrating renewable sources.',
-    banner_image_url: 'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&h=600&fit=crop',
-    categories: ['Smart Cities'],
-    year: 2023,
-    location: 'Copenhagen, Denmark',
-  },
-  {
-    slug: 'robotic-quality-control',
-    title: 'Robotic Quality Control System',
-    excerpt: 'Computer vision-powered quality inspection detecting defects with 99.9% accuracy at 10x human speed.',
-    banner_image_url: 'https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&h=600&fit=crop',
-    categories: ['Industrial Automation'],
-    year: 2022,
-    location: 'Shenzhen, China',
+    slug: 'ai-learnsprint',
+    title: 'AI LearnSprint',
+    excerpt: 'AI LearnLab deployed in rural schools with dynamic science support and offline-first features. Platform combining intelligent tutoring, curriculum personalization, and interactive tools for accessible education.',
+    banner_image_url: 'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600&fit=crop',
+    categories: ['Education', 'Technology'],
+    year: 2024,
+    location: 'Rural Communities',
   },
 ];
 

@@ -113,7 +113,7 @@ const LiveDemoSection = ({ image, videoUrl, title, metrics }: LiveDemoSectionPro
                     </div>
                     <span className={cn(
                       "text-xs font-semibold px-2 py-1 rounded-full",
-                      metric.change.startsWith('+') ? 'bg-green-500/10 text-green-500' : 'bg-blue-500/10 text-blue-500'
+                      metric.change.startsWith('+') ? 'bg-lime-700/10 text-lime-700' : 'bg-amber-800/10 text-amber-800'
                     )}>
                       {metric.change}
                     </span>

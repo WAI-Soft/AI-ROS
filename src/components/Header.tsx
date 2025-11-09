@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { cn } from '@/lib/utils';
 
 const Header = () => {
@@ -47,11 +48,14 @@ const Header = () => {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center transform group-hover:scale-105 transition-transform">
-              <span className="text-white font-bold text-xl">AI</span>
-            </div>
-            <span className="text-xl font-bold text-foreground hidden sm:block">AI-ROS</span>
+          <Link to="/" className="flex items-center group">
+            <img 
+              src="/src/assets/AIROS-Logo.png" 
+              alt="AIROS Logo" 
+              className={`h-12 md:h-14 w-auto transform group-hover:scale-105 transition-all ${
+                !isScrolled ? 'brightness-0 invert' : ''
+              } dark:brightness-0 dark:invert`}
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -92,9 +96,7 @@ const Header = () => {
               <span className="text-sm font-medium">{language.toUpperCase()}</span>
             </Button>
 
-            <Button variant="default" size="sm" className="hidden md:inline-flex bg-gradient-to-r from-secondary to-accent hover:opacity-90">
-              Get Started
-            </Button>
+            <ThemeToggle />
 
             {/* Mobile Menu Toggle */}
             <button
@@ -148,9 +150,9 @@ const Header = () => {
                   <Globe className="w-4 h-4 mr-2" />
                   {language.toUpperCase()}
                 </Button>
-                <Button variant="default" size="sm" className="flex-1 bg-gradient-to-r from-secondary to-accent">
-                  Get Started
-                </Button>
+                <div className="flex-1 flex justify-center">
+                  <ThemeToggle />
+                </div>
               </div>
             </div>
           </div>

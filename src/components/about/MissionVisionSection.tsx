@@ -44,7 +44,7 @@ const coreValues: CoreValue[] = [
 ];
 
 const MissionVisionSection = () => {
-  const [sectionRef, isVisible] = useIntersectionObserver({
+  const [sectionRef, isVisible] = useIntersectionObserver<HTMLDivElement>({
     threshold: 0.2,
     freezeOnceVisible: true,
   });
@@ -68,9 +68,7 @@ const MissionVisionSection = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Our Mission</h2>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              To empower businesses and communities with intelligent automation solutions that drive
-              sustainable growth, operational excellence, and positive environmental impact through
-              the innovative application of artificial intelligence and robotics.
+              To design scalable AI and robotic systems that tackle real-world challenges in agriculture, water, climate, education, and public policy—helping communities adapt, industries evolve, and nature thrive.
             </p>
           </AnimatedCard>
 
@@ -88,9 +86,7 @@ const MissionVisionSection = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-foreground">Our Vision</h2>
             </div>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              To be the global leader in AI-driven automation, transforming industries through
-              innovative technology that creates a smarter, more sustainable, and more connected
-              world for future generations.
+              A world where automation, data, and intelligence enable a greener, more resilient future.
             </p>
           </AnimatedCard>
         </div>
@@ -98,24 +94,21 @@ const MissionVisionSection = () => {
         {/* Core Values */}
         <div className="text-center mb-12">
           <div
-            className={`inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30 backdrop-blur-sm transition-all duration-700 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30 backdrop-blur-sm transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
           >
             <div className="w-2 h-2 rounded-full bg-secondary animate-glow-pulse" />
             Core Values
           </div>
           <h2
-            className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 transition-all duration-700 delay-100 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-4 transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
           >
             What Drives Us Forward
           </h2>
           <p
-            className={`text-lg text-muted-foreground max-w-2xl mx-auto transition-all duration-700 delay-200 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-            }`}
+            className={`text-lg text-muted-foreground max-w-2xl mx-auto transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+              }`}
           >
             Our values guide every decision we make and every solution we create
           </p>
@@ -150,9 +143,8 @@ const MissionVisionSection = () => {
 
         {/* Download CTA */}
         <div
-          className={`text-center transition-all duration-700 delay-500 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-          }`}
+          className={`text-center transition-all duration-700 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            }`}
         >
           <Button
             size="lg"

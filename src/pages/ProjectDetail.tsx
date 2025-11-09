@@ -105,7 +105,7 @@ const ProjectDetail = () => {
                 {project.categories.map((category, index) => (
                   <span
                     key={category}
-                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-emerald-500/20 to-teal-500/20 backdrop-blur-md text-emerald-300 text-sm font-bold border border-emerald-500/30"
+                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-700/20 to-orange-800/20 backdrop-blur-md text-amber-500 text-sm font-bold border border-amber-700/30"
                     style={{ transitionDelay: `${index * 50}ms` }}
                   >
                     {category}
@@ -123,7 +123,7 @@ const ProjectDetail = () => {
                 {project.client && (
                   <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-center">
                     <div className="flex items-center justify-center gap-2 mb-2">
-                      <Building2 className="w-4 h-4 text-emerald-400" />
+                      <Building2 className="w-4 h-4 text-amber-600" />
                       <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Client</span>
                     </div>
                     <div className="text-white font-bold">{project.client}</div>
@@ -131,7 +131,7 @@ const ProjectDetail = () => {
                 )}
                 <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-center">
                   <div className="flex items-center justify-center gap-2 mb-2">
-                    <Calendar className="w-4 h-4 text-teal-400" />
+                    <Calendar className="w-4 h-4 text-orange-700" />
                     <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Year</span>
                   </div>
                   <div className="text-white font-bold">{project.year}</div>
@@ -139,7 +139,7 @@ const ProjectDetail = () => {
                 {project.location && (
                   <div className="p-5 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 text-center">
                     <div className="flex items-center justify-center gap-2 mb-2">
-                      <MapPin className="w-4 h-4 text-cyan-400" />
+                      <MapPin className="w-4 h-4 text-yellow-600" />
                       <span className="text-xs font-bold text-white/70 uppercase tracking-wider">Location</span>
                     </div>
                     <div className="text-white font-bold">{project.location}</div>
@@ -150,7 +150,7 @@ const ProjectDetail = () => {
               {/* Impact & Results */}
               <div className={`transition-all duration-700 delay-400 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-1 translate-y-4'}`}>
                 <div className="text-center mb-8">
-                  <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-4 text-sm font-bold text-emerald-300 bg-emerald-500/20 rounded-full border border-emerald-500/30 backdrop-blur-md">
+                  <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-4 text-sm font-bold text-amber-500 bg-amber-700/20 rounded-full border border-amber-700/30 backdrop-blur-md">
                     <TrendingUp className="w-4 h-4" />
                     Impact & Results
                   </div>
@@ -163,7 +163,7 @@ const ProjectDetail = () => {
                   {Object.entries(project.key_metrics).map(([key, value], index) => (
                     <div
                       key={key}
-                      className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 hover:border-emerald-400/50 transition-all duration-500 hover:-translate-y-1 text-center"
+                      className="group relative p-6 rounded-2xl bg-white/10 backdrop-blur-xl border border-white/20 hover:border-amber-600/50 transition-all duration-500 hover:-translate-y-1 text-center"
                       style={{ transitionDelay: `${index * 100}ms` }}
                     >
                       <div className="text-4xl md:text-5xl font-black text-white mb-2">
@@ -180,24 +180,24 @@ const ProjectDetail = () => {
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl z-10" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl z-10" />
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-700/10 rounded-full blur-3xl z-10" />
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-800/10 rounded-full blur-3xl z-10" />
         </section>
 
         {/* Project Description */}
         <section className="relative py-24 bg-gradient-to-b from-muted/30 via-background to-muted/20 overflow-hidden">
           {/* Decorative Background Elements */}
           <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-            <div className="absolute top-20 right-10 w-72 h-72 bg-emerald-500/5 rounded-full blur-3xl" />
-            <div className="absolute bottom-40 left-10 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl" />
+            <div className="absolute top-20 right-10 w-72 h-72 bg-amber-700/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-40 left-10 w-96 h-96 bg-orange-800/5 rounded-full blur-3xl" />
           </div>
 
           <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="max-w-5xl mx-auto">
               {/* Section Header */}
               <div className="text-center mb-16">
-                <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-6 text-sm font-bold text-emerald-400 bg-emerald-500/10 rounded-full border border-emerald-500/20">
-                  <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-6 text-sm font-bold text-amber-600 bg-amber-700/10 rounded-full border border-amber-700/20">
+                  <span className="w-2 h-2 bg-amber-600 rounded-full animate-pulse" />
                   Project Deep Dive
                 </div>
                 <h2 className="text-4xl md:text-5xl font-black text-foreground mb-4">
@@ -215,20 +215,20 @@ const ProjectDetail = () => {
                   prose-headings:font-black prose-headings:tracking-tight prose-headings:text-center
                   prose-h2:text-4xl prose-h2:mt-20 prose-h2:mb-10 prose-h2:first:mt-0
                   prose-h2:pb-5 prose-h2:border-b-2 prose-h2:border-border/50
-                  prose-h2:bg-gradient-to-r prose-h2:from-emerald-400 prose-h2:via-teal-400 prose-h2:to-cyan-400 
+                  prose-h2:bg-gradient-to-r prose-h2:from-amber-600 prose-h2:via-orange-700 prose-h2:to-yellow-600 
                   prose-h2:bg-clip-text prose-h2:text-transparent
                   prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-6 prose-h3:text-foreground
                   prose-h3:flex prose-h3:items-center prose-h3:justify-center prose-h3:gap-3
                   prose-h3:before:content-[''] prose-h3:before:w-1 prose-h3:before:h-6 
-                  prose-h3:before:bg-gradient-to-b prose-h3:before:from-emerald-400 prose-h3:before:to-teal-400 
+                  prose-h3:before:bg-gradient-to-b prose-h3:before:from-amber-600 prose-h3:before:to-orange-700 
                   prose-h3:before:rounded-full
                   prose-p:text-muted-foreground prose-p:leading-[1.9] prose-p:text-lg prose-p:mb-6 prose-p:text-center
                   prose-p:first-of-type:text-xl prose-p:first-of-type:leading-relaxed
                   prose-ul:my-8 prose-ul:space-y-4 prose-ul:text-left prose-ul:max-w-3xl prose-ul:mx-auto
                   prose-li:text-muted-foreground prose-li:text-lg prose-li:leading-relaxed
-                  prose-li:pl-3 prose-li:marker:text-emerald-400 prose-li:marker:text-2xl
+                  prose-li:pl-3 prose-li:marker:text-amber-600 prose-li:marker:text-2xl
                   prose-strong:text-foreground prose-strong:font-bold
-                  prose-strong:bg-gradient-to-r prose-strong:from-emerald-400/10 prose-strong:to-transparent
+                  prose-strong:bg-gradient-to-r prose-strong:from-amber-600/10 prose-strong:to-transparent
                   prose-strong:px-1 prose-strong:py-0.5 prose-strong:rounded
                 ">
                   <div dangerouslySetInnerHTML={{ __html: project.description }} />
@@ -237,16 +237,16 @@ const ProjectDetail = () => {
                 {/* Tech Stack Section */}
                 <div className="mt-20 pt-8 border-t border-border/50">
                   <h3 className="text-2xl font-black text-foreground mb-6 flex items-center justify-center gap-3">
-                    <div className="w-1 h-6 bg-gradient-to-b from-emerald-400 to-teal-400 rounded-full" />
+                    <div className="w-1 h-6 bg-gradient-to-b from-amber-600 to-orange-700 rounded-full" />
                     Technology Stack
                   </h3>
                   <div className="flex flex-wrap gap-3 justify-center">
                     {project.tech_stack.map((tech, index) => (
                       <span
                         key={tech}
-                        className="px-5 py-3 rounded-xl bg-gradient-to-br from-emerald-500/10 to-teal-500/10 
-                          border border-emerald-500/20 text-foreground font-semibold text-sm
-                          hover:border-emerald-500/40 hover:shadow-lg hover:shadow-emerald-500/10
+                        className="px-5 py-3 rounded-xl bg-gradient-to-br from-amber-700/10 to-orange-800/10 
+                          border border-amber-700/20 text-foreground font-semibold text-sm
+                          hover:border-amber-700/40 hover:shadow-lg hover:shadow-amber-700/10
                           transition-all duration-300 hover:-translate-y-1"
                         style={{ 
                           animationDelay: `${index * 50}ms`,
@@ -264,12 +264,12 @@ const ProjectDetail = () => {
         </section>
 
         {/* Download CTA */}
-        <section className="py-20 bg-gradient-to-br from-emerald-500/10 via-teal-500/10 to-cyan-500/10">
+        <section className="py-20 bg-gradient-to-br from-amber-700/10 via-orange-800/10 to-yellow-700/10">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-4xl mx-auto">
               <div className="p-12 rounded-3xl bg-gradient-to-br from-card via-card/95 to-card/90 backdrop-blur-xl border border-border/50 shadow-2xl text-center">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center mx-auto mb-6">
-                  <Download className="w-8 h-8 text-emerald-400" />
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-700/20 to-orange-800/20 flex items-center justify-center mx-auto mb-6">
+                  <Download className="w-8 h-8 text-amber-600" />
                 </div>
                 <h3 className="text-3xl md:text-4xl font-black text-foreground mb-4">
                   Want to Learn More?
@@ -279,7 +279,7 @@ const ProjectDetail = () => {
                 </p>
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:opacity-90 text-white font-bold text-lg px-8 shadow-lg shadow-emerald-500/30"
+                  className="bg-gradient-to-r from-amber-700 via-orange-800 to-yellow-700 hover:opacity-90 text-white font-bold text-lg px-8 shadow-lg shadow-amber-700/30"
                 >
                   <Download className="w-5 h-5 mr-2" />
                   Download Full Case Study
@@ -302,7 +302,7 @@ const ProjectDetail = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 hover:opacity-90 text-white font-bold text-lg px-10 py-6 shadow-xl shadow-emerald-500/30"
+                  className="bg-gradient-to-r from-amber-700 via-orange-800 to-yellow-700 hover:opacity-90 text-white font-bold text-lg px-10 py-6 shadow-xl shadow-amber-700/30"
                   asChild
                 >
                   <a href="/contact">
@@ -313,7 +313,7 @@ const ProjectDetail = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-2 border-border hover:border-emerald-500/50 font-bold text-lg px-10 py-6"
+                  className="border-2 border-border hover:border-amber-700/50 font-bold text-lg px-10 py-6"
                   asChild
                 >
                   <a href="/projects">View More Projects</a>

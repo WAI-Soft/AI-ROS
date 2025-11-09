@@ -71,14 +71,17 @@ const ProjectFilterBar = ({
                 {/* Desktop Filter Bar */}
                 <div className="hidden md:flex items-center gap-4">
                     {/* Search */}
-                    <form onSubmit={handleSearchSubmit} className="flex-1 max-w-md">
+                    <form onSubmit={handleSearchSubmit} className="w-80">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
                             <input
                                 type="text"
                                 placeholder="Search projects..."
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value);
+                                    onSearchChange(e.target.value);
+                                }}
                                 className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-muted border border-border focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                             />
                         </div>
@@ -89,7 +92,7 @@ const ProjectFilterBar = ({
                         <button
                             onClick={() => handleCategoryClick('')}
                             className={cn(
-                                'px-4 py-2 rounded-lg font-medium text-sm transition-all',
+                                'px-5 py-2 rounded-lg font-medium text-sm transition-all whitespace-nowrap',
                                 !currentFilters.category
                                     ? 'bg-secondary text-white shadow-lg shadow-secondary/30'
                                     : 'bg-muted text-foreground hover:bg-muted/80'
@@ -102,23 +105,13 @@ const ProjectFilterBar = ({
                                 key={category.id}
                                 onClick={() => handleCategoryClick(category.id)}
                                 className={cn(
-                                    'px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2',
+                                    'px-5 py-2 rounded-lg font-medium text-sm transition-all whitespace-nowrap',
                                     currentFilters.category === category.id
                                         ? 'bg-secondary text-white shadow-lg shadow-secondary/30'
                                         : 'bg-muted text-foreground hover:bg-muted/80'
                                 )}
                             >
                                 {category.name}
-                                <span
-                                    className={cn(
-                                        'px-2 py-0.5 rounded-full text-xs font-bold',
-                                        currentFilters.category === category.id
-                                            ? 'bg-white/20 text-white'
-                                            : 'bg-secondary/10 text-secondary'
-                                    )}
-                                >
-                                    {category.count}
-                                </span>
                             </button>
                         ))}
                     </div>
@@ -185,7 +178,10 @@ const ProjectFilterBar = ({
                                 type="text"
                                 placeholder="Search projects..."
                                 value={searchQuery}
-                                onChange={(e) => setSearchQuery(e.target.value)}
+                                onChange={(e) => {
+                                    setSearchQuery(e.target.value);
+                                    onSearchChange(e.target.value);
+                                }}
                                 className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-muted border border-border focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                             />
                         </div>
@@ -245,7 +241,7 @@ const ProjectFilterBar = ({
                                                     : 'bg-card text-foreground hover:bg-card/80'
                                             )}
                                         >
-                                            {category.name} ({category.count})
+                                            {category.name}
                                         </button>
                                     ))}
                                 </div>

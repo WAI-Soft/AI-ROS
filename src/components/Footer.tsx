@@ -1,13 +1,13 @@
-import { Facebook, Twitter, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Facebook, href: '#', label: 'Facebook' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/ai-ros/', label: 'LinkedIn' },
+    { icon: Facebook, href: 'https://www.facebook.com/share/1EW9u4zaLh/?mibextid=wwXIfr', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/airos.ai?igsh=bHR3dXh6bThkcHBi', label: 'Instagram' },
   ];
 
   const quickLinks = [
@@ -30,11 +30,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-10 h-10 bg-gradient-to-br from-secondary to-accent rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-xl">AI</span>
-              </div>
-              <span className="text-xl font-bold">AI-ROS</span>
+            <div className="flex items-center">
+              <img 
+                src="/src/assets/AIROS-Logo.png" 
+                alt="AIROS Logo" 
+                className="h-16 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-sm text-gray-300 leading-relaxed">
               Pioneering AI-driven solutions for smart agriculture, cities, and industrial automation.
@@ -44,6 +45,8 @@ const Footer = () => {
                 <a
                   key={social.label}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={social.label}
                   className="w-9 h-9 rounded-lg bg-primary-foreground/10 hover:bg-secondary flex items-center justify-center transition-colors"
                 >
@@ -94,25 +97,25 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <Mail className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <a
-                  href="mailto:info@ai-ros.com"
+                  href="mailto:ola@ai-ros.ai"
                   className="text-sm text-gray-300 hover:text-secondary transition-colors"
                 >
-                  info@ai-ros.com
+                  ola@ai-ros.ai
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+201021183564"
                   className="text-sm text-gray-300 hover:text-secondary transition-colors"
                 >
-                  +1 (234) 567-890
+                  +20 1021183564
                 </a>
               </li>
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-secondary mt-0.5 flex-shrink-0" />
                 <span className="text-sm text-gray-300">
-                  123 Tech Boulevard, Innovation City
+                  Cairo, Egypt
                 </span>
               </li>
             </ul>

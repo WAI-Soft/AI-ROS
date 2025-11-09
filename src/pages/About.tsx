@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import PageHero from '@/components/shared/PageHero';
 import MissionVisionSection from '@/components/about/MissionVisionSection';
 import TimelineSection from '@/components/about/TimelineSection';
-import LeadershipTeamSection from '@/components/about/LeadershipTeamSection';
+import FAQSection from '@/components/about/FAQSection';
 
 const About = () => {
   return (
@@ -12,14 +12,14 @@ const About = () => {
       <main>
         <PageHero
           title="About AI-ROS"
-          subtitle="Pioneering AI-driven solutions for a smarter, more sustainable future"
+          subtitle="AIROS is an Egypt-based innovation company building AI and robotics solutions that empower people, protect the planet, and reimagine industries. From smart agriculture to sustainable cities, our mission is simple: develop technology that serves people and the planet."
           badge="Our Story"
           parallax
           fullHeight
         />
         <MissionVisionSection />
         <TimelineSection />
-        <LeadershipTeamSection />
+        <FAQSection />
       </main>
       <Footer />
     </div>
