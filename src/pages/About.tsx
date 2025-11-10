@@ -14,6 +14,7 @@ const About = () => {
           title="About AI-ROS"
           subtitle="AIROS is an Egypt-based innovation company building AI and robotics solutions that empower people, protect the planet, and reimagine industries. From smart agriculture to sustainable cities, our mission is simple: develop technology that serves people and the planet."
           badge="Our Story"
+          backgroundImage="/src/assets/background1.jpg"
           parallax
           fullHeight
         />

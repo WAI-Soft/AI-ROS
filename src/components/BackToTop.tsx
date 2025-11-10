@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTheme } from '@/components/ThemeProvider';
 
 const BackToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const toggleVisibility = () => {
@@ -33,11 +35,14 @@ const BackToTop = () => {
       {isVisible && (
         <Button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 px-4 py-3 rounded-xl shadow-2xl bg-gradient-to-br from-amber-700 via-orange-800 to-yellow-700 hover:from-emerald-600 hover:via-teal-600 hover:to-cyan-600 text-white border-2 border-white/20 transition-all duration-300 hover:scale-105 hover:shadow-amber-700/50 flex items-center gap-2"
+          className={`fixed bottom-8 right-8 z-50 px-4 py-3 rounded-xl shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2 ${
+            theme === 'dark'
+              ? 'bg-gradient-to-br from-amber-900 via-amber-950 to-stone-950 hover:from-secondary hover:via-secondary/90 hover:to-secondary/80 text-white border-0 hover:shadow-secondary/50'
+              : 'bg-gradient-to-br from-primary via-primary/90 to-primary/80 hover:from-secondary hover:via-secondary/90 hover:to-secondary/80 text-white border-2 border-primary/30 hover:shadow-secondary/50'
+          }`}
           aria-label="Back to top"
         >
           <ArrowUp className="w-5 h-5" />
-
         </Button>
       )}
     </>

@@ -14,7 +14,7 @@ export function ThemeToggle() {
       variant="ghost"
       size="sm"
       onClick={toggleTheme}
-      className="w-9 h-9 p-0"
+      className="w-9 h-9 p-0 bg-secondary/10 text-secondary hover:bg-secondary hover:text-white transition-all"
       aria-label="Toggle theme"
     >
       <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

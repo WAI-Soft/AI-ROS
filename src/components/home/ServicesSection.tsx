@@ -93,7 +93,7 @@ const ServicesSection = () => {
               className={`group relative p-8 rounded-3xl bg-card/80 backdrop-blur-sm border border-border hover:border-primary/50 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 overflow-hidden ${isVisible
                 ? 'opacity-100 translate-y-0'
                 : 'opacity-0 translate-y-16'
-                }`}
+                } ${index >= 3 ? 'md:col-span-1 md:mx-auto md:max-w-md lg:col-span-1 lg:mx-0 lg:max-w-none' : ''} ${index === 3 ? 'md:col-start-1 lg:col-start-auto' : ''} ${index === 4 ? 'md:col-start-2 lg:col-start-auto' : ''}`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {/* Animated gradient background */}
@@ -102,11 +102,11 @@ const ServicesSection = () => {
               {/* Rotating gradient orb */}
               <div className={`absolute -top-20 -right-20 w-48 h-48 bg-gradient-to-br ${service.gradient} rounded-full blur-3xl group-hover:scale-150 group-hover:rotate-180 transition-all duration-1000`} />
 
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col items-center text-center">
                 {/* Icon container */}
                 <div className="relative mb-6">
                   <div className={`absolute inset-0 ${service.color} opacity-20 blur-2xl rounded-full group-hover:scale-150 transition-transform duration-700`} />
-                  <div className="relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted group-hover:scale-110 transition-transform duration-300 w-fit">
+                  <div className="relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted group-hover:scale-110 transition-transform duration-300">
                     <service.icon className={`w-10 h-10 ${service.color}`} />
                   </div>
                 </div>

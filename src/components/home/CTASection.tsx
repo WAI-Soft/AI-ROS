@@ -24,11 +24,11 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-[hsl(210,40%,8%)] via-[hsl(210,35%,12%)] to-[hsl(210,40%,8%)]/90 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-muted via-muted/80 to-muted dark:from-[hsl(210,40%,8%)] dark:via-[hsl(210,35%,12%)] dark:to-[hsl(210,40%,8%)]/90 relative overflow-hidden">
       {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-10 dark:opacity-10">
         <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)',
           backgroundSize: '40px 40px',
         }} />
       </div>
@@ -39,9 +39,9 @@ const CTASection = () => {
       
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <Sparkles className="absolute top-20 left-20 w-5 h-5 text-white/20 animate-float" style={{ animationDelay: '0s' }} />
-        <Sparkles className="absolute top-40 right-32 w-4 h-4 text-white/20 animate-float" style={{ animationDelay: '1s' }} />
-        <Sparkles className="absolute bottom-32 left-1/3 w-6 h-6 text-white/20 animate-float" style={{ animationDelay: '1.5s' }} />
+        <Sparkles className="absolute top-20 left-20 w-5 h-5 text-foreground/20 dark:text-white/20 animate-float" style={{ animationDelay: '0s' }} />
+        <Sparkles className="absolute top-40 right-32 w-4 h-4 text-foreground/20 dark:text-white/20 animate-float" style={{ animationDelay: '1s' }} />
+        <Sparkles className="absolute bottom-32 left-1/3 w-6 h-6 text-foreground/20 dark:text-white/20 animate-float" style={{ animationDelay: '1.5s' }} />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -49,10 +49,10 @@ const CTASection = () => {
           <div className={`transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground dark:text-white mb-6 leading-tight">
               Ready to Transform Your Business?
             </h2>
-            <p className="text-xl sm:text-2xl text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl sm:text-2xl text-muted-foreground dark:text-white/90 mb-12 max-w-3xl mx-auto leading-relaxed">
               Join industry leaders who trust AI-ROS to deliver innovative solutions. 
               Let's discuss how we can help you achieve your goals.
             </p>
@@ -71,28 +71,28 @@ const CTASection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="group border-2 border-white/30 text-white hover:bg-white/20 backdrop-blur-sm font-bold text-lg px-10 h-16 rounded-full hover:border-white/50 transition-all duration-500 hover:scale-110"
+              className="group border-2 border-border dark:border-white/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-white/20 backdrop-blur-sm font-bold text-lg px-10 h-16 rounded-full hover:border-primary dark:hover:border-white/50 transition-all duration-500 hover:scale-110"
             >
               <Mail className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
               Contact Sales
             </Button>
           </div>
 
-          <div className={`mt-16 pt-12 border-t border-white/20 transition-all duration-1000 delay-500 ${
+          <div className={`mt-16 pt-12 border-t border-border dark:border-white/20 transition-all duration-1000 delay-500 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
               <div className="group transition-transform duration-500 hover:scale-110">
                 <div className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-3">30 min</div>
-                <div className="text-sm text-white/80 font-semibold uppercase tracking-wide">Free Consultation</div>
+                <div className="text-sm text-muted-foreground dark:text-white/80 font-semibold uppercase tracking-wide">Free Consultation</div>
               </div>
               <div className="group transition-transform duration-500 hover:scale-110">
                 <div className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-3">48 hrs</div>
-                <div className="text-sm text-white/80 font-semibold uppercase tracking-wide">Response Time</div>
+                <div className="text-sm text-muted-foreground dark:text-white/80 font-semibold uppercase tracking-wide">Response Time</div>
               </div>
               <div className="group transition-transform duration-500 hover:scale-110">
                 <div className="text-5xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent mb-3">100%</div>
-                <div className="text-sm text-white/80 font-semibold uppercase tracking-wide">Confidential</div>
+                <div className="text-sm text-muted-foreground dark:text-white/80 font-semibold uppercase tracking-wide">Confidential</div>
               </div>
             </div>
           </div>

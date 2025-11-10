@@ -53,7 +53,7 @@ const Blog = () => {
         <PageHero
           title="Insights & Articles"
           subtitle="Thought leadership and industry insights from our team of experts"
-          backgroundImage="https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=1920&h=1080&fit=crop"
+          backgroundImage="/src/assets/background1.jpg"
           parallax
           fullHeight
         />

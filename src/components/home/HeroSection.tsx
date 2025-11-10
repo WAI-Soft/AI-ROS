@@ -1,23 +1,26 @@
 import { ArrowRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import heroImage from '@/assets/hero-bg.jpg';
+import heroImage from '@/assets/background1.jpg';
+import heroSectionImage from '@/assets/herosection.png';
 
 const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroImage}
           alt="AI-ROS Technology"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(210,40%,8%)]/95 via-[hsl(210,40%,8%)]/85 to-[hsl(210,40%,8%)]/70" />
+        {/* Dark overlay for dark mode */}
+        <div className="absolute inset-0 bg-black/0 dark:bg-black/50 transition-colors duration-300" />
       </div>
 
       {/* Content */}
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-20 pb-32">
-        <div className="max-w-4xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+          <div className="max-w-4xl">
           <div className="animate-fade-in-up">
             <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30">
               Transforming Industries with AI
@@ -31,7 +34,7 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl animate-fade-in-up leading-relaxed">
+          <p className="text-lg sm:text-xl text-white bg-gradient-to-r from-secondary to-accent px-6 py-4 rounded-lg mb-8 max-w-2xl animate-fade-in-up leading-relaxed font-semibold shadow-lg">
             AI-ROS delivers cutting-edge AI-driven solutions for smart agriculture, intelligent cities,
             and industrial automation. Empowering businesses to achieve operational excellence through innovation.
           </p>
@@ -47,10 +50,12 @@ const HeroSection = () => {
             <Button
               size="lg"
               variant="outline"
-              className="border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm font-semibold text-lg px-8 h-14"
+              className="group border-2 border-secondary/50 bg-white/20 hover:bg-gradient-to-r hover:from-secondary hover:to-accent backdrop-blur-md font-semibold text-lg px-8 h-14 shadow-lg transition-all"
             >
-              <Play className="mr-2 w-5 h-5" />
-              Watch Demo
+              <Play className="mr-2 w-5 h-5 text-secondary dark:text-white group-hover:text-white transition-colors" />
+              <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent dark:text-white group-hover:text-white transition-colors">
+                Watch Demo
+              </span>
             </Button>
           </div>
 
@@ -58,17 +63,27 @@ const HeroSection = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-fade-in">
             <div className="text-center">
               <div className="text-4xl font-bold text-secondary mb-2">50+</div>
-              <div className="text-sm text-white/70">Projects Completed</div>
+              <div className="text-sm text-secondary font-semibold">Projects Completed</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-secondary mb-2">95%</div>
-              <div className="text-sm text-white/70">Client Satisfaction</div>
+              <div className="text-sm text-secondary font-semibold">Client Satisfaction</div>
             </div>
             <div className="text-center">
               <div className="text-4xl font-bold text-secondary mb-2">24/7</div>
-              <div className="text-sm text-white/70">Support Available</div>
+              <div className="text-sm text-secondary font-semibold">Support Available</div>
             </div>
           </div>
+        </div>
+
+        {/* Right Side Image */}
+        <div className="flex justify-center items-center animate-fade-in mt-8 lg:mt-0">
+          <img 
+            src={heroSectionImage}
+            alt="AI-ROS Hero"
+            className="w-full max-w-2xl lg:max-w-3xl h-auto object-contain drop-shadow-2xl"
+          />
+        </div>
         </div>
       </div>
 

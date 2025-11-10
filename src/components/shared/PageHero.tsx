@@ -75,7 +75,8 @@ const PageHero = ({
         ) : (
           <div className="w-full h-full bg-gradient-to-br from-[hsl(210,40%,8%)] via-[hsl(210,40%,12%)] to-[hsl(210,40%,8%)]" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-[hsl(210,40%,8%)]/95 via-[hsl(210,40%,8%)]/85 to-[hsl(210,40%,8%)]/70" />
+        {/* Dark overlay for dark mode */}
+        <div className="absolute inset-0 bg-black/0 dark:bg-black/50 transition-colors duration-300" />
       </div>
 
       {/* Content */}
@@ -107,7 +108,7 @@ const PageHero = ({
           </h1>
 
           {subtitle && (
-            <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed">
+            <p className="text-lg sm:text-xl text-white bg-gradient-to-r from-secondary to-accent px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed font-semibold shadow-lg">
               {subtitle}
             </p>
           )}

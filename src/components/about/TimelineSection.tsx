@@ -13,46 +13,25 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   {
-    year: 2015,
+    year: 2023,
     title: 'Company Founded',
     description:
       'AI-ROS was established with a vision to revolutionize industries through intelligent automation. Our founding team of AI researchers and robotics engineers came together to bridge the gap between cutting-edge technology and practical business applications.',
-    image: '/images/timeline/2015.jpg',
-  },
-  {
-    year: 2017,
-    title: 'First Smart Agriculture Project',
-    description:
-      'Successfully deployed our first precision agriculture solution, helping a 5,000-hectare farm reduce water consumption by 40% while increasing crop yield by 25%. This project established our reputation in the agricultural technology sector.',
-    image: '/images/timeline/2017.jpg',
-  },
-  {
-    year: 2018,
-    title: 'Smart City Initiative Launch',
-    description:
-      'Partnered with municipal governments to implement intelligent traffic management and energy optimization systems. Our solutions reduced traffic congestion by 30% and energy costs by 20% in pilot cities.',
-    image: '/images/timeline/2018.jpg',
-  },
-  {
-    year: 2020,
-    title: 'Industrial Automation Expansion',
-    description:
-      'Expanded into manufacturing automation, deploying AI-powered quality control and predictive maintenance systems. Helped clients achieve 99.5% uptime and reduce defect rates by 60%.',
-    image: '/images/timeline/2020.jpg',
-  },
-  {
-    year: 2022,
-    title: 'International Recognition',
-    description:
-      'Received multiple industry awards for innovation and sustainability. Expanded operations to serve clients across three continents, with a growing portfolio of 50+ successful projects.',
-    image: '/images/timeline/2022.jpg',
+    image: '/images/timeline/2023.jpg',
   },
   {
     year: 2024,
-    title: 'AI Research Lab Opening',
+    title: 'First Solutions Launch',
     description:
-      'Opened our dedicated AI research facility to advance machine learning, computer vision, and robotics technologies. Committed to pushing the boundaries of what\'s possible in intelligent automation.',
+      'Successfully launched our first AI-powered solutions including GROW+ for plant disease detection and Cozy Earth for air quality improvement. These projects established our reputation in sustainable technology and smart agriculture sectors.',
     image: '/images/timeline/2024.jpg',
+  },
+  {
+    year: 2025,
+    title: 'Expansion & Innovation',
+    description:
+      'Expanded our solution portfolio with Soil-Sense, RaG SaaS, and AI LearnLab. Committed to democratizing AI education and advancing sustainable technologies. Growing our impact across agriculture, urban planning, and education sectors.',
+    image: '/images/timeline/2025.jpg',
   },
 ];
 
@@ -103,7 +82,7 @@ const TimelineSection = () => {
             {/* Timeline Line */}
             <div className="absolute top-24 left-0 right-0 h-1 bg-gradient-to-r from-secondary/20 via-secondary to-secondary/20" />
 
-            <div className="grid grid-cols-6 gap-8">
+            <div className="grid grid-cols-3 gap-8">
               {milestones.map((milestone, index) => (
                 <div
                   key={milestone.year}

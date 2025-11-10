@@ -111,7 +111,7 @@ const Projects = () => {
         <PageHero
           title="Our Projects"
           subtitle="Explore our portfolio of successful AI and automation implementations"
-          backgroundImage="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop"
+          backgroundImage="/src/assets/background1.jpg"
           parallax
           fullHeight
         />

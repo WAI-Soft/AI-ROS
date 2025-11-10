@@ -3,6 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { Menu, X, Globe } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { useTheme } from '@/components/ThemeProvider';
 import { cn } from '@/lib/utils';
 
 const Header = () => {
@@ -10,6 +11,7 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [language, setLanguage] = useState<'en' | 'ar'>('en');
   const location = useLocation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,10 +23,10 @@ const Header = () => {
 
   const navItems = [
     { label: 'Home', href: '/' },
-    { label: 'About', href: '/about' },
-    { label: 'Solutions', href: '/solutions/smart-agriculture' },
+    { label: 'Solutions', href: '/solutions' },
     { label: 'Projects', href: '/projects' },
     { label: 'Blog', href: '/blog' },
+    { label: 'About', href: '/about' },
     { label: 'Contact', href: '/contact' },
   ];
 
@@ -50,11 +52,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img 
-              src="/src/assets/AIROS-Logo.png" 
+              src={isScrolled ? '/src/assets/AI-ROS_Logo-light.png' : '/src/assets/AIROS-Logo.png'}
               alt="AIROS Logo" 
-              className={`h-12 md:h-14 w-auto transform group-hover:scale-105 transition-all ${
-                !isScrolled ? 'brightness-0 invert' : ''
-              } dark:brightness-0 dark:invert`}
+              className="h-16 md:h-20 w-auto max-w-[200px] md:max-w-[250px] object-contain transform group-hover:scale-105 transition-all"
             />
           </Link>
 
@@ -90,7 +90,7 @@ const Header = () => {
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="hidden sm:flex items-center space-x-2"
+              className="hidden sm:flex items-center space-x-2 bg-secondary/10 text-secondary hover:bg-secondary hover:text-white transition-all"
             >
               <Globe className="w-4 h-4" />
               <span className="text-sm font-medium">{language.toUpperCase()}</span>

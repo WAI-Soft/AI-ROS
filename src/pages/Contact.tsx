@@ -82,7 +82,7 @@ const Contact = () => {
         <PageHero
           title="Get in Touch"
           subtitle="Let's discuss how AI-ROS can transform your business"
-          backgroundImage="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=1920&h=1080&fit=crop"
+          backgroundImage="/src/assets/background1.jpg"
           parallax
           fullHeight
         />

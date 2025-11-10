@@ -1,0 +1,48 @@
+/* Effra Font Family */
+@font-face {
+  font-family: 'Effra';
+  src: url('/fonts/Effra_Trial_Hair.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra';
+  src: url('/fonts/Effra_Trial_Lt.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra';
+  src: url('/fonts/Effra_Trial_Rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra';
+  src: url('/fonts/Effra_Trial_Md.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra';
+  src: url('/fonts/Effra_Trial_Bd.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Effra';
+  src: url('/fonts/Effra_Trial_Blk.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
