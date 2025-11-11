@@ -2,8 +2,11 @@ import { ArrowRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/background1.jpg';
 import heroSectionImage from '@/assets/herosection.png';
+import { useStats } from '@/hooks/useStats';
 
 const HeroSection = () => {
+  const { stats, loading } = useStats();
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -62,16 +65,22 @@ const HeroSection = () => {
           {/* Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 animate-fade-in">
             <div className="text-center">
-              <div className="text-4xl font-bold text-secondary mb-2">50+</div>
+              <div className="text-4xl font-bold text-secondary mb-2">
+                {loading ? '...' : `${stats?.total_projects || 0}+`}
+              </div>
               <div className="text-sm text-secondary font-semibold">Projects Completed</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-secondary mb-2">95%</div>
-              <div className="text-sm text-secondary font-semibold">Client Satisfaction</div>
+              <div className="text-4xl font-bold text-secondary mb-2">
+                {loading ? '...' : `${stats?.co2_saved || 0}`}
+              </div>
+              <div className="text-sm text-secondary font-semibold">Tons CO₂ Saved</div>
             </div>
             <div className="text-center">
-              <div className="text-4xl font-bold text-secondary mb-2">24/7</div>
-              <div className="text-sm text-secondary font-semibold">Support Available</div>
+              <div className="text-4xl font-bold text-secondary mb-2">
+                {loading ? '...' : `${stats?.partner_count || 0}+`}
+              </div>
+              <div className="text-sm text-secondary font-semibold">Global Partners</div>
             </div>
           </div>
         </div>

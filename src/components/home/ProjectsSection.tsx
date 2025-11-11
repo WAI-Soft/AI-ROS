@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { useNavigate } from 'react-router-dom';
 
 const ProjectsSection = () => {
+  const navigate = useNavigate();
   const [visibleCards, setVisibleCards] = useState<boolean[]>([false, false, false]);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -169,6 +171,7 @@ const ProjectsSection = () => {
         <div className="text-center mt-16">
           <Button
             size="lg"
+            onClick={() => navigate('/projects')}
             className="group relative bg-gradient-to-r from-secondary to-accent hover:shadow-2xl hover:shadow-secondary/50 text-white font-semibold px-10 py-6 text-lg rounded-full overflow-hidden transition-all duration-500 hover:scale-105"
           >
             <span className="relative z-10 flex items-center">
