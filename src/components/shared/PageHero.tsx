@@ -108,7 +108,7 @@ const PageHero = ({
           </h1>
 
           {subtitle && (
-            <p className="text-lg sm:text-xl text-white bg-gradient-to-r from-secondary to-accent px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed font-semibold shadow-lg">
+            <p className="text-lg sm:text-xl text-white bg-black/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed font-semibold shadow-lg border border-white/20">
               {subtitle}
             </p>
           )}

@@ -22,7 +22,7 @@ const HeroSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="max-w-4xl">
           <div className="animate-fade-in-up">
-            <span className="inline-block px-4 py-2 mb-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30">
+            <span className="inline-block px-4 py-2 my-6 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30">
               Transforming Industries with AI
             </span>
           </div>
@@ -34,7 +34,7 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-white bg-gradient-to-r from-secondary to-accent px-6 py-4 rounded-lg mb-8 max-w-2xl animate-fade-in-up leading-relaxed font-semibold shadow-lg">
+          <p className="text-lg sm:text-xl text-white bg-black/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-2xl animate-fade-in-up leading-relaxed font-semibold shadow-lg border border-white/20">
             AI-ROS delivers cutting-edge AI-driven solutions for smart agriculture, intelligent cities,
             and industrial automation. Empowering businesses to achieve operational excellence through innovation.
           </p>
@@ -77,7 +77,7 @@ const HeroSection = () => {
         </div>
 
         {/* Right Side Image */}
-        <div className="flex justify-center items-center animate-fade-in mt-8 lg:mt-0">
+        <div className="flex justify-center items-start animate-fade-in mt-8 lg:mt-0 lg:-mt-32">
           <img 
             src={heroSectionImage}
             alt="AI-ROS Hero"

@@ -43,8 +43,8 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ${
-        isScrolled ? 'bg-background/95 backdrop-blur-md shadow-md' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 bg-background/95 backdrop-blur-md ${
+        isScrolled ? 'shadow-md' : ''
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -52,7 +52,7 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center group">
             <img 
-              src={isScrolled ? '/src/assets/AI-ROS_Logo-light.png' : '/src/assets/AIROS-Logo.png'}
+              src="/src/assets/AI-ROS_Logo-light.png"
               alt="AIROS Logo" 
               className="h-16 md:h-20 w-auto max-w-[200px] md:max-w-[250px] object-contain transform group-hover:scale-105 transition-all"
             />
@@ -70,9 +70,7 @@ const Header = () => {
                     'px-4 py-2 text-base font-medium transition-all rounded-lg relative',
                     active
                       ? 'text-secondary bg-secondary/10 font-semibold'
-                      : isScrolled 
-                      ? 'text-foreground hover:text-secondary hover:bg-muted' 
-                      : 'text-white/90 hover:text-white hover:bg-white/10'
+                      : 'text-foreground hover:text-secondary hover:bg-muted'
                   )}
                 >
                   {item.label}
@@ -127,9 +125,7 @@ const Header = () => {
                       'px-4 py-3 text-base font-medium rounded-lg transition-all relative',
                       active
                         ? 'text-secondary bg-secondary/10 font-semibold'
-                        : isScrolled 
-                        ? 'text-foreground hover:text-secondary hover:bg-muted' 
-                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                        : 'text-foreground hover:text-secondary hover:bg-muted'
                     )}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
