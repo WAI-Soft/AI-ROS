@@ -28,28 +28,28 @@ const ImpactSection = () => {
       value: 250,
       suffix: '+',
       label: 'Active Projects',
-      color: 'text-blue-500',
+      color: 'text-secondary',
     },
     {
       icon: Users,
       value: 10000,
       suffix: '+',
       label: 'Users Worldwide',
-      color: 'text-green-500',
+      color: 'text-secondary',
     },
     {
       icon: Award,
       value: 15,
       suffix: '+',
       label: 'Industry Awards',
-      color: 'text-purple-500',
+      color: 'text-secondary',
     },
     {
       icon: Zap,
       value: 99,
       suffix: '%',
       label: 'Uptime SLA',
-      color: 'text-orange-500',
+      color: 'text-secondary',
     },
   ];
 

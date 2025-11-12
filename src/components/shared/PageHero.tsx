@@ -1,6 +1,7 @@
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
+import { ShaderBackground } from '@/components/ui/hero-shader';
 
 interface CTAButton {
   label: string;
@@ -31,6 +32,7 @@ const PageHero = ({
   fullHeight = false,
 }: PageHeroProps) => {
   const [scrollY, setScrollY] = useState(0);
+  const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
     if (!parallax) return;
@@ -42,6 +44,22 @@ const PageHero = ({
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [parallax]);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    };
+    
+    checkDarkMode();
+    
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+    
+    return () => observer.disconnect();
+  }, []);
 
   const parallaxStyle = parallax
     ? { transform: `translateY(${scrollY * 0.5}px)` }
@@ -67,16 +85,14 @@ const PageHero = ({
             <source src={backgroundVideo.replace('.webm', '.mp4')} type="video/mp4" />
           </video>
         ) : backgroundImage ? (
-          <img
-            src={backgroundImage}
-            alt=""
-            className="w-full h-full object-cover"
-          />
+          <ShaderBackground darkMode={isDark}>
+            <div className="absolute inset-0" />
+          </ShaderBackground>
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-[hsl(210,40%,8%)] via-[hsl(210,40%,12%)] to-[hsl(210,40%,8%)]" />
+          <ShaderBackground darkMode={isDark}>
+            <div className="absolute inset-0" />
+          </ShaderBackground>
         )}
-        {/* Dark overlay for dark mode */}
-        <div className="absolute inset-0 bg-black/0 dark:bg-black/50 transition-colors duration-300" />
       </div>
 
       {/* Content */}
@@ -84,7 +100,7 @@ const PageHero = ({
         <div className="max-w-4xl mx-auto text-center">
           {badge && (
             <div className="animate-fade-in-up mb-6">
-              <span className="inline-block px-4 py-2 text-sm font-semibold text-secondary bg-secondary/10 rounded-full border border-secondary/30">
+              <span className="inline-block px-4 py-2 text-sm font-semibold text-[#1a1a1a] dark:text-white bg-secondary/10 rounded-full border border-secondary/30">
                 {badge}
               </span>
             </div>
@@ -108,7 +124,7 @@ const PageHero = ({
           </h1>
 
           {subtitle && (
-            <p className="text-lg sm:text-xl text-white bg-black/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed font-semibold shadow-lg border border-white/20">
+            <p className="text-lg sm:text-xl text-[#000000] dark:text-white bg-white/40 dark:bg-white/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed shadow-lg border border-secondary/20 dark:border-white/20">
               {subtitle}
             </p>
           )}

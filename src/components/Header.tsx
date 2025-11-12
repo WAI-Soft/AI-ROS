@@ -43,8 +43,8 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 bg-background/95 backdrop-blur-md ${
-        isScrolled ? 'shadow-md' : ''
+      className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-300 bg-background/95 backdrop-blur-md shadow-lg ${
+        isScrolled ? 'shadow-xl' : ''
       }`}
     >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -88,7 +88,7 @@ const Header = () => {
               variant="ghost"
               size="sm"
               onClick={toggleLanguage}
-              className="hidden sm:flex items-center space-x-2 bg-secondary/10 text-secondary hover:bg-secondary hover:text-white transition-all"
+              className="hidden sm:flex items-center space-x-2 bg-secondary text-white hover:bg-secondary/10 hover:text-secondary transition-all"
             >
               <Globe className="w-4 h-4" />
               <span className="text-sm font-medium">{language.toUpperCase()}</span>
