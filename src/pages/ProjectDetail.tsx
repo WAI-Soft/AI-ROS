@@ -367,10 +367,10 @@ const mockProject: ProjectDetail = {
   title: 'Automated Vineyard Management System',
   slug: 'automated-vineyard-management',
   description: `
-    <h2>The Challenge</h2>
+    <h2 style="font-size: 3rem; color: #c4ad9d; font-weight: 900;">The Challenge</h2>
     <p>A 5,000-hectare vineyard in Napa Valley was facing significant challenges with water management, pest control, and yield optimization. Traditional farming methods were leading to excessive water usage, inconsistent crop quality, and difficulty in early pest detection.</p>
     
-    <h2>Our Solution</h2>
+    <h2 style="font-size: 3rem; color: #c4ad9d; font-weight: 900;">Our Solution</h2>
     <p>We deployed a comprehensive AI-powered precision agriculture platform that combines IoT sensors, computer vision, and predictive analytics. The system includes:</p>
     <ul>
       <li>Network of 500+ soil moisture and weather sensors across the vineyard</li>
@@ -380,7 +380,7 @@ const mockProject: ProjectDetail = {
       <li>Mobile dashboard for farm managers with actionable insights</li>
     </ul>
     
-    <h2>The Results</h2>
+    <h2 style="font-size: 3rem; color: #c4ad9d; font-weight: 900;">The Results</h2>
     <p>Within the first year of implementation, the vineyard achieved remarkable improvements:</p>
     <ul>
       <li>40% reduction in water consumption, saving 2 million gallons annually</li>

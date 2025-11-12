@@ -94,14 +94,14 @@ const ArticleCard = ({ article, delay = 0 }: ArticleCardProps) => {
           <div className="flex items-center justify-between pt-4 border-t border-border">
             <div className="flex items-center gap-3">
               <img
-                src={article.author.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.name)}&size=32&background=0ea5e9&color=fff`}
+                src={article.author.avatar || `https://ui-avatars.com/api/?name=${encodeURIComponent(article.author.name)}&size=32&background=c4ad9d&color=fff`}
                 alt={article.author.name}
                 className="w-8 h-8 rounded-full bg-muted"
                 loading="lazy"
                 decoding="async"
                 onError={(e) => {
                   const initial = article.author.name.charAt(0).toUpperCase();
-                  e.currentTarget.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32"%3E%3Ccircle fill="%230ea5e9" cx="16" cy="16" r="16"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="14" font-weight="bold"%3E${initial}%3C/text%3E%3C/svg%3E`;
+                  e.currentTarget.src = `data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="32" height="32"%3E%3Ccircle fill="%23c4ad9d" cx="16" cy="16" r="16"/%3E%3Ctext x="50%25" y="50%25" text-anchor="middle" dy=".3em" fill="white" font-size="14" font-weight="bold"%3E${initial}%3C/text%3E%3C/svg%3E`;
                 }}
               />
               <span className="text-sm font-medium text-foreground">{article.author.name}</span>
