@@ -1,8 +1,148 @@
-import { Target, Eye, Lightbulb, Users, Zap, Award } from 'lucide-react';
+import { Target, Eye, Lightbulb, Users, Zap, Award, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import SectionContainer from '@/components/shared/SectionContainer';
 import AnimatedCard from '@/components/shared/AnimatedCard';
 import { useIntersectionObserver } from '@/hooks/useIntersectionObserver';
+import { jsPDF } from 'jspdf';
+
+// Function to download company one-pager as PDF
+const downloadCompanyOnePager = () => {
+  const doc = new jsPDF();
+  const pageWidth = doc.internal.pageSize.getWidth();
+  let yPos = 20;
+
+  // Title
+  doc.setFontSize(24);
+  doc.setFont('helvetica', 'bold');
+  doc.text('AI-ROS COMPANY ONE-PAGER', pageWidth / 2, yPos, { align: 'center' });
+  yPos += 15;
+
+  // About AI-ROS
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('ABOUT AI-ROS', 20, yPos);
+  yPos += 8;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  const aboutText = 'AIROS is an Egypt-based innovation company building AI and robotics solutions that empower people, protect the planet, and reimagine industries. From smart agriculture to sustainable cities, our mission is simple: develop technology that serves people and the planet.';
+  const aboutLines = doc.splitTextToSize(aboutText, pageWidth - 40);
+  doc.text(aboutLines, 20, yPos);
+  yPos += aboutLines.length * 6 + 8;
+
+  // Mission
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('OUR MISSION', 20, yPos);
+  yPos += 8;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  const missionText = 'To design scalable AI and robotic systems that tackle real-world challenges in agriculture, water, climate, education, and public policy—helping communities adapt, industries evolve, and nature thrive.';
+  const missionLines = doc.splitTextToSize(missionText, pageWidth - 40);
+  doc.text(missionLines, 20, yPos);
+  yPos += missionLines.length * 6 + 8;
+
+  // Vision
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('OUR VISION', 20, yPos);
+  yPos += 8;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  const visionText = 'A world where automation, data, and intelligence enable a greener, more resilient future.';
+  const visionLines = doc.splitTextToSize(visionText, pageWidth - 40);
+  doc.text(visionLines, 20, yPos);
+  yPos += visionLines.length * 6 + 8;
+
+  // Core Values
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('CORE VALUES', 20, yPos);
+  yPos += 8;
+
+  const values = [
+    { title: 'Innovation', desc: 'Pushing boundaries with cutting-edge AI and robotics solutions' },
+    { title: 'Excellence', desc: 'Delivering exceptional quality in every project we undertake' },
+    { title: 'Collaboration', desc: 'Working closely with clients to achieve shared success' },
+    { title: 'Efficiency', desc: 'Optimizing processes to maximize impact and reduce waste' },
+    { title: 'Sustainability', desc: 'Building solutions that benefit both business and environment' },
+    { title: 'Integrity', desc: 'Maintaining the highest standards of ethics and transparency' },
+  ];
+
+  doc.setFontSize(11);
+  values.forEach(value => {
+    if (yPos > 250) {
+      doc.addPage();
+      yPos = 20;
+    }
+    doc.setFont('helvetica', 'bold');
+    doc.text(`• ${value.title}`, 25, yPos);
+    yPos += 6;
+    doc.setFont('helvetica', 'normal');
+    const descLines = doc.splitTextToSize(value.desc, pageWidth - 50);
+    doc.text(descLines, 30, yPos);
+    yPos += descLines.length * 6 + 4;
+  });
+
+  yPos += 6;
+
+  // Solutions
+  if (yPos > 220) {
+    doc.addPage();
+    yPos = 20;
+  }
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('OUR SOLUTIONS', 20, yPos);
+  yPos += 8;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  const solutions = [
+    'GROW+ – Smart Plant Doctor: AI-based plant disease detection platform',
+    'Cozy Earth – Air Quality by Design: VR-powered plant recommendation engine',
+    'Soil-Sense – Precision Irrigation: Smart irrigation assistant using IoT sensors',
+    'RaG SaaS – AI That Thinks With You: Retrieval-Augmented Generation platform',
+    'AI LearnLab – Personalized Education with AI: Intelligent tutoring platform',
+  ];
+  solutions.forEach(solution => {
+    if (yPos > 270) {
+      doc.addPage();
+      yPos = 20;
+    }
+    const solutionLines = doc.splitTextToSize(`• ${solution}`, pageWidth - 45);
+    doc.text(solutionLines, 25, yPos);
+    yPos += solutionLines.length * 6 + 2;
+  });
+
+  yPos += 8;
+
+  // Contact
+  if (yPos > 250) {
+    doc.addPage();
+    yPos = 20;
+  }
+  doc.setFontSize(16);
+  doc.setFont('helvetica', 'bold');
+  doc.text('CONTACT US', 20, yPos);
+  yPos += 8;
+  doc.setFontSize(11);
+  doc.setFont('helvetica', 'normal');
+  doc.text('Email: ola@ai-ros.ai', 20, yPos);
+  yPos += 6;
+  doc.text('Phone: +20 1021183564', 20, yPos);
+  yPos += 6;
+  doc.text('Location: Cairo, Egypt', 20, yPos);
+
+  // Footer
+  const pageCount = doc.getNumberOfPages();
+  for (let i = 1; i <= pageCount; i++) {
+    doc.setPage(i);
+    doc.setFontSize(9);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`© ${new Date().getFullYear()} AI-ROS. All rights reserved.`, pageWidth / 2, 285, { align: 'center' });
+  }
+
+  doc.save('AI-ROS-Company-One-Pager.pdf');
+};
 
 interface CoreValue {
   icon: React.ComponentType<{ className?: string }>;
@@ -148,8 +288,10 @@ const MissionVisionSection = () => {
         >
           <Button
             size="lg"
+            onClick={downloadCompanyOnePager}
             className="bg-gradient-to-r from-secondary to-accent hover:opacity-90 text-white font-semibold px-8"
           >
+            <Download className="w-5 h-5 mr-2" />
             Download Company One-Pager
           </Button>
         </div>

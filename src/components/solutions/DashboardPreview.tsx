@@ -238,7 +238,7 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
                 {videoUrl && (
                   <button
                     onClick={() => setIsModalOpen(true)}
-                    className="absolute top-6 right-6 w-12 h-12 rounded-xl bg-gradient-to-br from-amber-700 to-orange-800 flex items-center justify-center shadow-lg shadow-amber-700/50 hover:scale-110 hover:rotate-12 transition-all duration-300 border-2 border-white/20 z-30"
+                    className="absolute top-6 right-6 w-12 h-12 rounded-xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center shadow-lg shadow-secondary/50 hover:scale-110 hover:rotate-12 transition-all duration-300 border-2 border-white/20 z-30"
                   >
                     <Maximize2 className="w-5 h-5 text-white" />
                   </button>
@@ -246,8 +246,8 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
               </div>
 
               {/* Floating Orbs Around Preview */}
-              <div className="absolute -top-8 -left-8 w-40 h-40 bg-gradient-to-br from-amber-700/20 to-transparent rounded-full blur-3xl animate-float" />
-              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-yellow-700/20 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+              <div className="absolute -top-8 -left-8 w-40 h-40 bg-gradient-to-br from-secondary/20 to-transparent rounded-full blur-3xl animate-float" />
+              <div className="absolute -bottom-8 -right-8 w-48 h-48 bg-gradient-to-br from-accent/20 to-transparent rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
             </div>
           </div>
 
@@ -288,7 +288,7 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
                           <Icon className="w-8 h-8 text-white drop-shadow-lg" />
                         </div>
                         {/* Floating Badge */}
-                        <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-0 transition-all duration-500 shadow-lg">
+                        <div className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center opacity-0 group-hover:opacity-100 group-hover:scale-100 scale-0 transition-all duration-500 shadow-lg">
                           <Zap className="w-3 h-3 text-white" />
                         </div>
                       </div>
@@ -299,7 +299,7 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
                       </div>
 
                       {/* Label */}
-                      <div className="text-lg font-bold text-foreground mb-3 group-hover:text-amber-600 transition-colors duration-300">
+                      <div className="text-lg font-bold text-foreground mb-3 group-hover:text-secondary transition-colors duration-300">
                         {item.label}
                       </div>
 
@@ -320,7 +320,7 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
                     </div>
 
                     {/* Corner Sparkle */}
-                    <Sparkles className="absolute top-4 right-4 w-5 h-5 text-amber-600 opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-700" />
+                    <Sparkles className="absolute top-4 right-4 w-5 h-5 text-secondary opacity-0 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-700" />
                   </div>
                 </div>
               );
@@ -335,9 +335,9 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
             <div className="inline-flex flex-col sm:flex-row items-center gap-4">
               <button
                 onClick={() => videoUrl && setIsModalOpen(true)}
-                className="group/cta relative px-8 py-4 rounded-2xl bg-gradient-to-r from-amber-700 via-orange-800 to-yellow-700 text-white font-bold text-lg shadow-2xl shadow-amber-700/50 hover:shadow-amber-700/70 hover:scale-105 transition-all duration-300 overflow-hidden"
+                className="group/cta relative px-8 py-4 rounded-2xl bg-gradient-to-r from-secondary to-accent text-white font-bold text-lg shadow-2xl shadow-secondary/50 hover:shadow-secondary/70 hover:scale-105 transition-all duration-300 overflow-hidden"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-700 via-orange-800 to-amber-700 opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-r from-accent to-secondary opacity-0 group-hover/cta:opacity-100 transition-opacity duration-500" />
                 <span className="relative flex items-center gap-3">
                   <Play className="w-5 h-5" />
                   Watch Full Demo
@@ -346,7 +346,7 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
               </button>
               <a
                 href="/contact"
-                className="px-8 py-4 rounded-2xl bg-card/50 backdrop-blur-sm border-2 border-amber-700/30 text-foreground font-bold text-lg hover:bg-card hover:border-amber-700 hover:scale-105 transition-all duration-300"
+                className="px-8 py-4 rounded-2xl bg-card/50 backdrop-blur-sm border-2 border-secondary/30 text-foreground font-bold text-lg hover:bg-card hover:border-secondary hover:scale-105 transition-all duration-300"
               >
                 Request Custom Demo
               </a>
@@ -383,16 +383,16 @@ const DashboardPreview = ({ image, videoUrl, title }: DashboardPreviewProps) => 
 
       {/* Video Modal - Ultra Enhanced */}
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-7xl bg-gradient-to-br from-[hsl(210,40%,8%)] to-[hsl(210,40%,12%)] border-2 border-amber-700/30">
+        <DialogContent className="max-w-7xl bg-gradient-to-br from-[hsl(210,40%,8%)] to-[hsl(210,40%,12%)] border-2 border-secondary/30">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-4 text-3xl">
-              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-amber-700/30 to-orange-800/30 flex items-center justify-center border border-amber-700/30">
-                <Monitor className="w-7 h-7 text-amber-600" />
+              <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-secondary/30 to-accent/30 flex items-center justify-center border border-secondary/30">
+                <Monitor className="w-7 h-7 text-secondary" />
               </div>
-              <span className="bg-gradient-to-r from-amber-600 to-orange-700 bg-clip-text text-transparent font-black">
+              <span className="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent font-black">
                 {title}
               </span>
-              <div className="ml-auto flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-700/10 border border-amber-700/30">
+              <div className="ml-auto flex items-center gap-2 px-4 py-2 rounded-xl bg-secondary/10 border border-secondary/30">
                 <div className="w-2 h-2 rounded-full bg-amber-600 animate-pulse" />
                 <span className="text-amber-600 text-sm font-bold">LIVE DEMO</span>
               </div>

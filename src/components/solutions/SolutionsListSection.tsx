@@ -168,7 +168,7 @@ const SolutionsListSection = () => {
       {selectedSolution && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in" onClick={() => setSelectedSolution(null)}>
           <div 
-            className="relative bg-card rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-2 border-primary/30 animate-scale-in"
+            className="relative bg-card rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl border-2 border-secondary/30 animate-scale-in"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button */}
@@ -186,9 +186,9 @@ const SolutionsListSection = () => {
               {/* Icon and Title */}
               <div className="flex items-center gap-6 mb-8">
                 <div className="relative">
-                  <div className={`absolute inset-0 ${selectedSolution.color} opacity-20 blur-2xl rounded-full`} />
-                  <div className={`relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted border-2 border-primary/20 shadow-lg`}>
-                    <selectedSolution.icon className={`w-12 h-12 ${selectedSolution.color}`} />
+                  <div className="absolute inset-0 text-secondary opacity-20 blur-2xl rounded-full" />
+                  <div className="relative p-4 rounded-2xl bg-gradient-to-br from-card to-muted border-2 border-secondary/20 shadow-lg">
+                    <selectedSolution.icon className="w-12 h-12 text-secondary" />
                   </div>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -200,7 +200,7 @@ const SolutionsListSection = () => {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 {/* Left Side - Description */}
                 <div>
-                  <h3 className="text-lg font-semibold text-primary mb-4 flex items-center gap-2">
+                  <h3 className="text-lg font-semibold text-secondary mb-4 flex items-center gap-2">
                     <Sparkles className="w-5 h-5" />
                     Description
                   </h3>
@@ -212,8 +212,8 @@ const SolutionsListSection = () => {
                 {/* Right Side - Impact & Tech Stack */}
                 <div className="space-y-6">
                   {/* Impact */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-br from-muted/80 to-muted/40 backdrop-blur-sm border border-primary/20">
-                    <h3 className={`text-lg font-semibold ${selectedSolution.color} mb-3 flex items-center gap-2`}>
+                  <div className="p-6 rounded-2xl bg-gradient-to-br from-muted/80 to-muted/40 backdrop-blur-sm border border-secondary/20">
+                    <h3 className="text-lg font-semibold text-secondary mb-3 flex items-center gap-2">
                       <Sparkles className="w-5 h-5" />
                       Impact
                     </h3>
@@ -223,8 +223,8 @@ const SolutionsListSection = () => {
                   </div>
 
                   {/* Tech Stack */}
-                  <div className="p-6 rounded-2xl bg-gradient-to-br from-muted/80 to-muted/40 backdrop-blur-sm border border-primary/20">
-                    <h3 className={`text-lg font-semibold ${selectedSolution.color} mb-3 flex items-center gap-2`}>
+                  <div className="p-6 rounded-2xl bg-gradient-to-br from-muted/80 to-muted/40 backdrop-blur-sm border border-secondary/20">
+                    <h3 className="text-lg font-semibold text-secondary mb-3 flex items-center gap-2">
                       <Sparkles className="w-5 h-5" />
                       Tech Stack
                     </h3>
