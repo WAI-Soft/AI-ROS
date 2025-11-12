@@ -33,6 +33,7 @@ const ProjectsSection = () => {
   const projects = [
     {
       title: 'Smart Irrigation System',
+      slug: 'green-delta-project',
       category: 'Smart Agriculture',
       description: 'AI-powered irrigation management system that reduced water consumption by 40% while increasing crop yields.',
       image: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=800&auto=format&fit=crop',
@@ -41,6 +42,7 @@ const ProjectsSection = () => {
     },
     {
       title: 'Urban Traffic Management',
+      slug: 'urban-wellness-labs',
       category: 'Smart Cities',
       description: 'Intelligent traffic system that optimized flow and reduced congestion by 35% in metropolitan areas.',
       image: 'https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&auto=format&fit=crop',
@@ -49,6 +51,7 @@ const ProjectsSection = () => {
     },
     {
       title: 'Predictive Maintenance Suite',
+      slug: 'agroedge',
       category: 'Industrial Automation',
       description: 'Machine learning platform that predicts equipment failures, reducing downtime by 60% for manufacturers.',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&auto=format&fit=crop',
@@ -154,6 +157,7 @@ const ProjectsSection = () => {
                   <Button
                     variant="default"
                     size="lg"
+                    onClick={() => navigate(`/projects/${project.slug}`)}
                     className="group/btn relative w-full bg-gradient-to-r from-secondary to-accent hover:from-accent hover:to-secondary text-white font-bold shadow-lg hover:shadow-xl hover:shadow-secondary/50 transition-all duration-500 hover:scale-105 mt-auto overflow-hidden"
                   >
                     <span className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-200%] group-hover/btn:translate-x-[200%] transition-transform duration-1000" />
