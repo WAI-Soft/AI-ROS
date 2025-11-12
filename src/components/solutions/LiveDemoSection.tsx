@@ -132,4 +132,133 @@ const LiveDemoSection = ({ image, videoUrl, title, metrics }: LiveDemoSectionPro
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
             )}
           >
-            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-muted border 
+            <div className="inline-flex items-center gap-1 p-1 rounded-xl bg-muted border border-
+border">
+              <button
+                onClick={() => setActiveDevice('desktop')}
+                className={cn(
+                  "px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2",
+                  activeDevice === 'desktop' ? 'bg-secondary text-white' : 'hover:bg-muted-foreground/10'
+                )}
+              >
+                <Monitor className="w-4 h-4" />
+                <span className="text-sm font-medium">Desktop</span>
+              </button>
+              <button
+                onClick={() => setActiveDevice('tablet')}
+                className={cn(
+                  "px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2",
+                  activeDevice === 'tablet' ? 'bg-secondary text-white' : 'hover:bg-muted-foreground/10'
+                )}
+              >
+                <Tablet className="w-4 h-4" />
+                <span className="text-sm font-medium">Tablet</span>
+              </button>
+              <button
+                onClick={() => setActiveDevice('mobile')}
+                className={cn(
+                  "px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2",
+                  activeDevice === 'mobile' ? 'bg-secondary text-white' : 'hover:bg-muted-foreground/10'
+                )}
+              >
+                <Smartphone className="w-4 h-4" />
+                <span className="text-sm font-medium">Mobile</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Demo Preview */}
+          <div
+            className={cn(
+              "relative transition-all duration-700 delay-500",
+              deviceSizes[activeDevice],
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            )}
+          >
+            <div className="relative group cursor-pointer" onClick={() => setIsModalOpen(true)}>
+              <div className="relative rounded-2xl overflow-hidden border-2 border-border hover:border-secondary/50 transition-all duration-300 shadow-2xl hover:shadow-secondary/20">
+                <img
+                  src={image}
+                  alt={title}
+                  className="w-full h-auto"
+                />
+                
+                {/* Play Overlay */}
+                {videoUrl && (
+                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all duration-300 flex items-center justify-center">
+                    <div className="relative">
+                      <div className="absolute inset-0 bg-secondary/20 rounded-full blur-2xl animate-pulse" />
+                      <button className="relative w-20 h-20 rounded-full bg-gradient-to-br from-secondary to-accent flex items-center justify-center shadow-2xl hover:scale-110 transition-transform duration-300">
+                        <Play className="w-8 h-8 text-white ml-1" fill="white" />
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Expand Button */}
+                <button
+                  className="absolute top-4 right-4 w-10 h-10 rounded-lg bg-card/80 backdrop-blur-sm border border-border hover:border-secondary/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setIsModalOpen(true);
+                  }}
+                >
+                  <Maximize2 className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Features List */}
+          <div
+            className={cn(
+              "mt-12 grid md:grid-cols-3 gap-6 transition-all duration-700 delay-600",
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+            )}
+          >
+            {[
+              { title: 'Real-time Updates', desc: 'See changes instantly' },
+              { title: 'Cross-platform', desc: 'Works on all devices' },
+              { title: 'Secure & Reliable', desc: '99.9% uptime guarantee' },
+            ].map((feature, index) => (
+              <div key={index} className="flex items-start gap-3 p-4 rounded-xl bg-muted/50 border border-border">
+                <CheckCircle2 className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
+                <div>
+                  <h4 className="font-semibold text-foreground mb-1">{feature.title}</h4>
+                  <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </SectionContainer>
+
+      {/* Modal */}
+      <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+        <DialogContent className="max-w-6xl">
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+          </DialogHeader>
+          <div className="relative aspect-video rounded-lg overflow-hidden bg-muted">
+            {videoUrl ? (
+              <video
+                src={videoUrl}
+                controls
+                autoPlay
+                className="w-full h-full"
+              />
+            ) : (
+              <img
+                src={image}
+                alt={title}
+                className="w-full h-full object-contain"
+              />
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+export default LiveDemoSection;

@@ -58,23 +58,19 @@ const CTASection = () => {
             </p>
           </div>
 
-          <div className={`flex flex-col sm:flex-row gap-6 justify-center items-center transition-all duration-1000 delay-200 ${
+          <div className={`flex justify-center items-center transition-all duration-1000 delay-200 ${
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
           }`}>
             <Button
               size="lg"
+              asChild
               className="group bg-gradient-to-r from-secondary to-accent hover:shadow-2xl hover:shadow-secondary/50 text-white font-bold text-lg px-10 h-16 rounded-full transition-all duration-500 hover:scale-110"
             >
-              Schedule a Consultation
-              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="group border-2 border-border dark:border-white/30 text-foreground dark:text-white hover:bg-muted dark:hover:bg-white/20 backdrop-blur-sm font-bold text-lg px-10 h-16 rounded-full hover:border-primary dark:hover:border-white/50 transition-all duration-500 hover:scale-110"
-            >
-              <Mail className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-              Contact Sales
+              <a href="/contact">
+                <Mail className="mr-2 w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
+                Contact Sales
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
+              </a>
             </Button>
           </div>
 

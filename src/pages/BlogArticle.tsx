@@ -123,7 +123,7 @@ const BlogArticle = () => {
       {/* Reading Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-muted z-50">
         <div
-          className="h-full bg-gradient-to-r from-amber-700 via-orange-800 to-yellow-700 transition-all duration-300"
+          className="h-full bg-gradient-to-r from-secondary to-accent transition-all duration-300"
           style={{ width: `${readingProgress}%` }}
         />
       </div>
@@ -166,7 +166,7 @@ const BlogArticle = () => {
                 {article.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-4 py-2 rounded-full bg-gradient-to-r from-amber-700/20 to-orange-800/20 backdrop-blur-md text-amber-500 text-sm font-bold border border-amber-700/30"
+                    className="px-4 py-2 rounded-full bg-gradient-to-r from-secondary/20 to-accent/20 backdrop-blur-md text-secondary text-sm font-bold border border-secondary/30"
                   >
                     {tag}
                   </span>

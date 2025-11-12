@@ -92,7 +92,7 @@ const SolutionsListSection = () => {
           <div className="text-center mb-24">
             <div className="inline-flex items-center gap-2 px-5 py-2.5 mb-8 text-sm font-semibold text-primary bg-primary/10 rounded-full border border-primary/30 backdrop-blur-sm shadow-lg">
               <Sparkles className="w-4 h-4 animate-pulse" />
-              <span>🧬 Tech That Matters</span>
+              <span>Tech That Matters</span>
             </div>
             <h2 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-8">
               Our Solutions
