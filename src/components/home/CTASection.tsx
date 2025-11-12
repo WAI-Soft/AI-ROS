@@ -24,7 +24,7 @@ const CTASection = () => {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-muted via-muted/80 to-muted dark:from-[hsl(210,40%,8%)] dark:via-[hsl(210,35%,12%)] dark:to-[hsl(210,40%,8%)]/90 relative overflow-hidden">
+    <section ref={sectionRef} className="py-24 bg-gradient-to-br from-muted via-muted/80 to-muted dark:from-[#1f1812] dark:via-[#2a2218] dark:to-[#1f1812]/90 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10 dark:opacity-10">
         <div className="absolute inset-0" style={{
@@ -34,8 +34,8 @@ const CTASection = () => {
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-secondary/20 dark:bg-[#c4ad9d]/20 rounded-full blur-3xl animate-float" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/20 dark:bg-[#c4ad9d]/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       
       {/* Floating particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
