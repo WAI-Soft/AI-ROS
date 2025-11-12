@@ -1,6 +1,16 @@
 import { useEffect, useRef, useState } from 'react';
 import { Award } from 'lucide-react';
 
+// Import logos
+import TCLogo from '@/assets/logos/TC.png';
+import ASLogo from '@/assets/logos/AS.png';
+import UTLogo from '@/assets/logos/UT.png';
+import IALogo from '@/assets/logos/IA.png';
+import SFLogo from '@/assets/logos/SF.png';
+import CFLogo from '@/assets/logos/CF.png';
+import AXLogo from '@/assets/logos/AX.png';
+import GTLogo from '@/assets/logos/GT.png';
+
 const PartnersSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
@@ -22,16 +32,15 @@ const PartnersSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Mock partner logos - in production these would be real company logos
   const partners = [
-    { name: 'TechCorp', logo: 'TC' },
-    { name: 'AgriSolutions', logo: 'AS' },
-    { name: 'UrbanTech', logo: 'UT' },
-    { name: 'IndustrialAI', logo: 'IA' },
-    { name: 'SmartFarms', logo: 'SF' },
-    { name: 'CityFlow', logo: 'CF' },
-    { name: 'AutomateX', logo: 'AX' },
-    { name: 'GreenTech', logo: 'GT' },
+    { name: 'TechCorp', abbreviation: 'TC', logo: TCLogo },
+    { name: 'AgriSolutions', abbreviation: 'AS', logo: ASLogo },
+    { name: 'UrbanTech', abbreviation: 'UT', logo: UTLogo },
+    { name: 'IndustrialAI', abbreviation: 'IA', logo: IALogo },
+    { name: 'SmartFarms', abbreviation: 'SF', logo: SFLogo },
+    { name: 'CityFlow', abbreviation: 'CF', logo: CFLogo },
+    { name: 'AutomateX', abbreviation: 'AX', logo: AXLogo },
+    { name: 'GreenTech', abbreviation: 'GT', logo: GTLogo },
   ];
 
   return (
@@ -71,13 +80,26 @@ const PartnersSection = () => {
             {partners.map((partner, index) => (
               <div
                 key={`${partner.name}-1-${index}`}
-                className="flex-shrink-0 w-36 h-24 bg-card/80 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300 group hover:scale-105"
+                className="flex-shrink-0 w-36 h-24 perspective-1000"
               >
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:scale-110">
-                    {partner.logo}
+                <div className="flip-card-inner w-full h-full relative">
+                  {/* Front - Logo */}
+                  <div className="flip-card-front absolute w-full h-full bg-card/80 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center p-4">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
-                  <div className="text-xs text-muted-foreground mt-2 font-medium group-hover:text-foreground transition-colors">{partner.name}</div>
+                  {/* Back - Name and Abbreviation */}
+                  <div className="flip-card-back absolute w-full h-full bg-gradient-to-br from-secondary/90 to-secondary backdrop-blur-sm border border-secondary rounded-2xl flex flex-col items-center justify-center p-4">
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {partner.abbreviation}
+                    </div>
+                    <div className="text-xs text-white/90 font-medium text-center">
+                      {partner.name}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -85,13 +107,26 @@ const PartnersSection = () => {
             {partners.map((partner, index) => (
               <div
                 key={`${partner.name}-2-${index}`}
-                className="flex-shrink-0 w-36 h-24 bg-card/80 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center hover:border-secondary/50 hover:shadow-lg hover:shadow-secondary/20 transition-all duration-300 group hover:scale-105"
+                className="flex-shrink-0 w-36 h-24 perspective-1000"
               >
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-muted-foreground group-hover:text-secondary transition-all duration-300 group-hover:scale-110">
-                    {partner.logo}
+                <div className="flip-card-inner w-full h-full relative">
+                  {/* Front - Logo */}
+                  <div className="flip-card-front absolute w-full h-full bg-card/80 backdrop-blur-sm border border-border rounded-2xl flex items-center justify-center p-4">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.name}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
-                  <div className="text-xs text-muted-foreground mt-2 font-medium group-hover:text-foreground transition-colors">{partner.name}</div>
+                  {/* Back - Name and Abbreviation */}
+                  <div className="flip-card-back absolute w-full h-full bg-gradient-to-br from-secondary/90 to-secondary backdrop-blur-sm border border-secondary rounded-2xl flex flex-col items-center justify-center p-4">
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {partner.abbreviation}
+                    </div>
+                    <div className="text-xs text-white/90 font-medium text-center">
+                      {partner.name}
+                    </div>
+                  </div>
                 </div>
               </div>
             ))}
@@ -115,6 +150,29 @@ const PartnersSection = () => {
 
         .animate-scroll:hover {
           animation-play-state: paused;
+        }
+
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+
+        .flip-card-inner {
+          transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+          transform-style: preserve-3d;
+        }
+
+        .perspective-1000:hover .flip-card-inner {
+          transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+        }
+
+        .flip-card-back {
+          transform: rotateY(180deg);
         }
       `}</style>
     </section>

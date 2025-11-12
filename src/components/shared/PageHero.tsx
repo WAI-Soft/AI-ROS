@@ -2,6 +2,7 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { ShaderBackground } from '@/components/ui/hero-shader';
+import TypewriterText from '@/components/ui/TypewriterText';
 
 interface CTAButton {
   label: string;
@@ -124,8 +125,8 @@ const PageHero = ({
           </h1>
 
           {subtitle && (
-            <p className="text-lg sm:text-xl text-[#000000] dark:text-white bg-white/40 dark:bg-white/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed shadow-lg border border-secondary/20 dark:border-white/20">
-              {subtitle}
+            <p className="text-lg sm:text-xl text-[#000000] dark:text-white bg-white/40 dark:bg-white/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-2xl mx-auto animate-fade-in-up leading-relaxed shadow-lg border border-secondary/20 dark:border-white/20 min-h-[100px] flex items-center justify-center">
+              <TypewriterText text={subtitle} />
             </p>
           )}
 

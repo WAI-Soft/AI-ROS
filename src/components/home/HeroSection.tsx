@@ -1,11 +1,10 @@
 import { ArrowRight, Play } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useStats } from '@/hooks/useStats';
 import { ShaderBackground } from '@/components/ui/hero-shader';
+import TypewriterText from '@/components/ui/TypewriterText';
 import { useEffect, useState } from 'react';
 
 const HeroSection = () => {
-  const { stats, loading } = useStats();
   const [isDark, setIsDark] = useState(false);
 
   useEffect(() => {
@@ -49,9 +48,10 @@ const HeroSection = () => {
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-[#000000] dark:text-white bg-white/40 dark:bg-white/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-3xl animate-fade-in-up leading-relaxed shadow-lg border border-secondary/20 dark:border-white/20">
-            AI-ROS delivers cutting-edge AI-driven solutions for smart agriculture, intelligent cities,
-            and industrial automation. Empowering businesses to achieve operational excellence through innovation.
+          <p className="text-lg sm:text-xl text-[#000000] dark:text-white bg-white/40 dark:bg-white/10 backdrop-blur-md px-6 py-4 rounded-lg mb-8 max-w-3xl animate-fade-in-up leading-relaxed shadow-lg border border-secondary/20 dark:border-white/20 min-h-[120px] flex items-center justify-center">
+            <TypewriterText 
+              text="AI-ROS delivers cutting-edge AI-driven solutions for smart agriculture, intelligent cities, and industrial automation. Empowering businesses to achieve operational excellence through innovation."
+            />
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up justify-center">
